@@ -27,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script>
   Promise.all([d3.json("every-politician.json")]).then(data => {
-    console.log(data) // general data
+    console.log(data[0]) // general data
 
     let organisations = data[0].organizations // Party organisations (12)
 
