@@ -3,7 +3,7 @@
 <head>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-        .tooltip{
+        .tooltip2{
     pointer-events: none;
     /* display: inline-block;
     border: 1px solid #777777;
@@ -11,17 +11,20 @@
     border-bottom-color: black; */
 }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 </head>
 <body>
-    <div class="tooltip"></div>
+    <h1 class="display-2 text-center">14th Parliament</h1>
+    <div class="mini_tooltip"></div>
 <script>
 let width = 1900, height = 900;
 
-// x axis for each row on right cabinet
+// x axis for each row on chamber
 var row1_x = []
 var row2_x = []
 var row3_x = []
 var row4_x = []
+
 function setPosition_xRow(columns, row, input){
     for(i=0;i<columns;i++){
         row[i] = input + (50*i)
@@ -49,22 +52,28 @@ setPosition_xRow(6, row4_x, 650)
     let width_seat = 39, height_seat = 32
 
     let party_clr = d3.scaleOrdinal()
-            .domain([1, 3])
-            .range(['#FFF1BA', '#93DCAF', '#F595B2'])
-    
+            .domain([1, 4])
+            .range(['#95f5d8', '#C0A6D6', '#F595B2', '#FFF1BA'])
+            
     Promise.all([d3.json("test.json")]).then(data => {
 
-        let row1 = data[0].cabinet_right.row_1
-        let row2 = data[0].cabinet_right.row_2
-        let row3 = data[0].cabinet_right.row_3
-        let row4 = data[0].cabinet_right.row_4
+        // console.log(data[0].chamber_left)
+
+        let row1 = data[0].chamber_right.row_1
+        let row2 = data[0].chamber_right.row_2
+        let row3 = data[0].chamber_right.row_3
+        let row4 = data[0].chamber_right.row_4
+        let row5 = data[0].chamber_left.row_5
+        let row6 = data[0].chamber_left.row_6
+        let row7 = data[0].chamber_left.row_7
+        let row8 = data[0].chamber_left.row_8
 
         // RIGHT CABINET (TOP SIDE)
         //  ===================================
         //1st Row Top side
         svg.append("g")
         .selectAll("#row_1")
-        .data(data[0].cabinet_right.row_1)
+        .data(data[0].chamber_right.row_1)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -81,7 +90,7 @@ setPosition_xRow(6, row4_x, 650)
 
         //2nd Row Top side
         svg.selectAll("#row_2")
-        .data(data[0].cabinet_right.row_2)
+        .data(data[0].chamber_right.row_2)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -97,7 +106,7 @@ setPosition_xRow(6, row4_x, 650)
         
         // 3rd Row Top side
         svg.selectAll("#row_3")
-        .data(data[0].cabinet_right.row_3)
+        .data(data[0].chamber_right.row_3)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -113,7 +122,7 @@ setPosition_xRow(6, row4_x, 650)
         
         // 4th Row Top side
         svg.selectAll("#row_4")
-        .data(data[0].cabinet_right.row_4)
+        .data(data[0].chamber_right.row_4)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -133,8 +142,8 @@ setPosition_xRow(6, row4_x, 650)
         //  ===================================
         //1st Row Bottom side
         svg.append("g")
-        .selectAll("#row_1")
-        .data(data[0].cabinet_right.row_1)
+        .selectAll("#row_5")
+        .data(data[0].chamber_left.row_5)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -144,14 +153,14 @@ setPosition_xRow(6, row4_x, 650)
             .attr("fill", "white")
             .attr("stroke", "black")
             .attr("id", function(d, i){
-                return row1[i].name
+                return row5[i].name
             })
-            .attr("class", "row_1")
+            .attr("class", "row_5")
         
 
         //2nd Row Top side
-        svg.selectAll("#row_2")
-        .data(data[0].cabinet_right.row_2)
+        svg.selectAll("#row_6")
+        .data(data[0].chamber_left.row_6)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -161,13 +170,13 @@ setPosition_xRow(6, row4_x, 650)
             .attr("fill", "white")
             .attr("stroke", "black")
             .attr("id", function(d, i){
-                return row2[i].name
+                return row6[i].name
             })
-            .attr("class", "row_2")
+            .attr("class", "row_6")
         
         // 3rd Row Top side
-        svg.selectAll("#row_3")
-        .data(data[0].cabinet_right.row_3)
+        svg.selectAll("#row_7")
+        .data(data[0].chamber_left.row_7)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -177,13 +186,13 @@ setPosition_xRow(6, row4_x, 650)
             .attr("fill", "white")
             .attr("stroke", "black")
             .attr("id", function(d, i){
-                return row3[i].name
+                return row7[i].name
             })
-            .attr("class", "row_3");
+            .attr("class", "row_7");
         
         // 4th Row Top side
-        svg.selectAll("#row_4")
-        .data(data[0].cabinet_right.row_4)
+        svg.selectAll("#row_8")
+        .data(data[0].chamber_left.row_8)
         .enter()
             .append("rect")
             .attr("x", function(d, i){
@@ -193,9 +202,9 @@ setPosition_xRow(6, row4_x, 650)
             .attr("fill", "white")
             .attr("stroke", "black")
             .attr("id", function(d, i){
-                return row4[i].name
+                return row8[i].name
             })
-            .attr("class", "row_3");
+            .attr("class", "row_8");
         
         //  ===================================
         
@@ -203,16 +212,16 @@ setPosition_xRow(6, row4_x, 650)
         svg.selectAll("rect")
             .attr("width", width_seat)
             .attr("height", height_seat)
-            .style("fill", d => party_clr(d.party))
+            .style("fill", d => d.party === '-' ? 'white': party_clr(d.party))
 
 
             
         d3.selectAll("rect")
             .on("mouseover", (event, d) => {
-                d3.select(".tooltip")
+                d3.select(".mini_tooltip")
                 .text(
                     "Party: " + d.party + ", "
-                    + "MP: " + d.name
+                    + "Name: " + d.name
                     )
                 .style("position", "absolute")
                 .style("background", "#fff")
@@ -226,7 +235,7 @@ setPosition_xRow(6, row4_x, 650)
                     .attr("stroke-width", 0.2)
             })
         .on("mouseout", (event, d) => {
-            d3.select(".tooltip")
+            d3.select(".mini_tooltip")
             .transition()
             .duration(5000)
             .text("")

@@ -1,236 +1,232 @@
     {
-        "cabinet_right":
+        "chamber_right":
             {
                 "row_1":[
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"PWD",
+                        "gender": "-",
+                        "party": "-"
+                        
+                    },
+                    {
+                        "name":"Gan Siow Huang",
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Heng Chee How",
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
+                        "name":"Dr Janil Puthucheary",
+                        "gender": "female",
                         "party": "PAP"
                     
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Edwin Tong",
+                        
                         "gender": "male",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Indranee Rajah",
+                        
+                        "gender": "female",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Gan Kim Yong",
+                        
                         "gender": "male",
                         "party": "PAP"
                  
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Heng Swee Keat",
+                        
                         "gender": "male",
                         "party": "PAP"
                   
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Pritam Singh",
+                        
                         "gender": "male",
-                        "party": "PAP"
+                        "party": "WP"
                    
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Tharman Shanmugaratnam",
+                        
                         "gender": "male",
                         "party": "PAP"
                     
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Dr Ng Eng Hen",
+                        
                         "gender": "male",
                         "party": "PAP"
            
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
+                        "name":"Grace Fu",
+                        
+                        "gender": "female",
                         "party": "PAP"
                   
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Dr Tan See Leng",
+                        
                         "gender": "male",
                         "party": "PAP"
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Dr Mohd Maliki Osman",
+                        
                         "gender": "male",
                         "party": "PAP"
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Chee Hong Tat",
+                        
                         "gender": "male",
                         "party": "PAP"
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Sun Xueling",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Alvin Tan",
+                        
                         "gender": "male",
                         "party": "PAP"
                     },
                     {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                    },
-                    {
-                        "name":"Adam",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                    },
-                    {
-                        "name":"Adam",
-                        "age": 46,
+                        "name":"Dr Muhd Faishal Ibrahim",
+                        
                         "gender": "male",
                         "party": "PAP"
                     }
                 ],
                 "row_2": [
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Jessica Tan",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Denise Phua",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Seah Kian Peng",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Muralli Pillai",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Patrick Tay",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Alex Yam",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Vikram Nair",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Lim Biow Chuan",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Leon Perera",
+                        
+                        "gender": "male",
+                        "party": "WP"
+                        
+                    },
+                    {
+                        "name":"Dennis Tan",
+                        
+                        "gender": "male",
+                        "party": "WP"
+                        
+                    },
+                    {
+                        "name":"Desmond Choo",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Cheryl Chan",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Saktiandi Supaat",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Dr Lim Wee Kiak",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
+                        "name":"Carrie Tan",
+                        
                         "gender": "male",
                         "party": "PAP"
                         
                     },
                     {
-                        "name":"Clarence",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
+                        "name":"Yao Quan",
                         
-                    },
-                    {
-                        "name":"Clarence",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Clarence",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Clarence",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Clarence",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "PAP"
-                        
-                    },
-                    {
-                        "name":"Clarence",
-                        "age": 46,
                         "gender": "male",
                         "party": "PAP"
                         
@@ -238,162 +234,558 @@
                 ],
                 "row_3":[
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Hazel Poa",
+                        
+                        "gender": "female",
+                        "party": "PSP"
+                        
+                    },
+                    {
+                        "name":"Leong Mun Wai",
+                        
+                        "gender": "male",
+                        "party": "PSP"
+                        
+                    },
+                    {
+                        "name":"Zulkarnain Abdul Rahim",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Gerald Giam",
+                        
                         "gender": "male",
                         "party": "WP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"He Ting Ru",
+                        
                         "gender": "male",
                         "party": "WP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Fahmi Bin Aliman",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
+                        "name":"Joan Pereira",
+                        
+                        "gender": "female",
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Ang Wei Neng",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Dr Wan Rizal",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
+                        "name":"Yeo Wan Ling",
+                        
+                        "gender": "female",
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Edward Chia",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Chong Kee Hiong",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Melvin Yong Yik Chee",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
+                        "name":"Rachel Ong",
+                        
+                        "gender": "female",
+                        "party": "PAP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
+                        "name":"Prof Koh Lian Pin",
+                        
                         "gender": "male",
-                        "party": "WP"
+                        "party": "Nominated MP"
                         
                     },
                     {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
+                        "name":"Raj Joshua Thomas",
                         
-                    },
-                    {
-                        "name":"Haadee",
-                        "age": 46,
                         "gender": "male",
-                        "party": "WP"
-                        
-                    },
-                    {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
-                        
-                    },
-                    {
-                        "name":"Haadee",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "WP"
+                        "party": "Nominated MP"
                         
                     }
                 ],
                 "row_4": [
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "Independent"
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
                         
                     },
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "Independent"
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
                         
                     },
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
+                        "name":"Abdul Samad",
+                        
                         "gender": "male",
-                        "party": "Independent"
+                        "party": "Nominated MP"
                         
                     },
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
+                        "name":"Mark Chay",
+                        
                         "gender": "male",
-                        "party": "Independent"
+                        "party": "Nominated MP"
                         
                     },
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "Independent"
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
                         
                     },
                     {
-                        "name":"ChiLoong",
-                        "age": 46,
-                        "gender": "male",
-                        "party": "Independent"
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
                         
                     }
                 ]
                 
+            },
+            "chamber_left":
+            {
+                "row_5":[
+                    {
+                        "name":"Desmond Tan",
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Zaqy Mohamad",
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Dr Amy Khor",
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Desmond Lee",
+                        "gender": "male",
+                        "party": "PAP"
+                    
+                    },
+                    {
+                        "name":"Masagos Zulkifli B M M",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Chan Chun Sing",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Lawrence Wong",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                 
+                    },
+                    {
+                        "name":"Teo Chee Hean",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                  
+                    },
+                    {
+                        "name":"Lee Hsien Loong",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                   
+                    },
+                    {
+                        "name":"K Shanmugam",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                    
+                    },
+                    {
+                        "name":"Dr Vivian Balakrishnan",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+           
+                    },
+                    {
+                        "name":"Ong Ye Kung",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                  
+                    },
+                    {
+                        "name":"Josephine Teo",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"S Iswaran",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Sim Ann",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Dr Koh Poh Koon",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Low Yen Ling",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                    },
+                    {
+                        "name":"Tan Kiat How",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                    }
+
+                ],
+                "row_6":[
+                    {
+                        "name":"Christopher De Souza",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Yip Hon Weng",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Muhd Faisal Bin Abdul Manap",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Sylvia Lim",
+                        
+                        "gender": "female",
+                        "party": "WP"
+                        
+                    },
+                    {
+                        "name":"Foo Mee Har",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Lia Eng Hwa",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Eric Chua",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Baey Yam Keng",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Rahayu Mahzam",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Dr Tan Wu Meng",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Tin Pei Ling",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Sitoh Yih Pin",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Louis Ng",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Cheng Li Hui",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Sharael Taha",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Henry Kwek",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    }
+
+                ],
+                "row_7":[
+                    {
+                        "name":"Prof Hoon Hian Teck",
+                        
+                        "gender": "male",
+                        "party": "Nominated MP"
+                        
+                    },
+                    {
+                        "name":"Janet Ang",
+                        
+                        "gender": "female",
+                        "party": "Nominated MP"
+                        
+                    },
+                    {
+                        "name":"Don Wee",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Nadia Ahmad Samdin",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Louis Chua",
+                        
+                        "gender": "male",
+                        "party": "WP"
+                        
+                    },
+                    {
+                        "name":"A/P Jamus Jerome Lim",
+                        
+                        "gender": "male",
+                        "party": "WP"
+                        
+                    },
+                    {
+                        "name":"Shawn Huang",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Hany Soh",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Darryl David",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Mariam Jaafar",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Gan Thiam Poh",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Ng Ling Ling",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Poh Li San",
+                        
+                        "gender": "female",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Derrick Goh",
+                        
+                        "gender": "male",
+                        "party": "PAP"
+                        
+                    },
+                    {
+                        "name":"Dr Tan Yia Swam",
+                        
+                        "gender": "male",
+                        "party": "Nominated MP"
+                        
+                    },
+                    {
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
+                        
+                    }
+
+                ],
+                "row_8":[
+                    {
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
+                        
+                    },
+                    {
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
+                        
+                    },
+                    {
+                        "name":"Dr Shahira Abdullah",
+                        
+                        "gender": "male",
+                        "party": "Nominated MP"
+                        
+                    },
+                    {
+                        "name":"Cheng Hsing Yao",
+                        
+                        "gender": "male",
+                        "party": "Nominated MP"
+                        
+                    },
+                    {
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
+                        
+                    },
+                    {
+                        "name":"-",
+                        
+                        "gender": "-",
+                        "party": "-"
+                        
+                    }
+
+                ]
             }
     }
