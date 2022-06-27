@@ -210,7 +210,10 @@ setPosition_xRow(6, row4_x, 650)
         d3.selectAll("rect")
             .on("mouseover", (event, d) => {
                 d3.select(".tooltip")
-                .text("Test")
+                .text(
+                    "Party: " + d.party + ", "
+                    + "MP: " + d.name
+                    )
                 .style("position", "absolute")
                 .style("background", "#fff")
                 .style("left", (event.pageX) + "px")
