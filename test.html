@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .tooltip{
+    pointer-events: none;
+    /* display: inline-block;
+    border: 1px solid #777777;
+    border-width: 2px;
+    border-bottom-color: black; */
+}
+    </style>
+</head>
+<body>
+    <div class="tooltip"></div>
+<script>
+let width = 1900, height = 900;
+
+// x axis for each row on right cabinet
+var row1_x = []
+var row2_x = []
+var row3_x = []
+var row4_x = []
+function setPosition_xRow(columns, row, input){
+    for(i=0;i<columns;i++){
+        row[i] = input + (50*i)
+    }
+}
+
+
+// LAYOUT OF SINGAPORE PARLIAMENT => Total 112 seats available
+// 1ST ROW (18 COLUMNS) each seat is +50 apart 
+setPosition_xRow(18, row1_x, 400)
+// 2ND ROW (16 COLUMNS)
+setPosition_xRow(16, row2_x, 450)
+// 3RD ROW (16 COLUMNS)
+setPosition_xRow(16, row3_x, 450)
+// 4TH ROW (6 COLUMNS)
+setPosition_xRow(6, row4_x, 650)
+
+
+
+    var svg = d3.select("body")
+ 			.append("svg")
+           	.attr("width", width)
+           	.attr("height", height)
+            .attr("viewBox", "0 0 " + width + " " + height)
+           	.style('background-color', 'lightgrey');
+
+    let width_seat = 39, height_seat = 32
+    
+    Promise.all([d3.json("test.json")]).then(data => {
+
+        let row1 = data[0].cabinet_right.row_1
+        let row2 = data[0].cabinet_right.row_2
+        let row3 = data[0].cabinet_right.row_3
+        let row4 = data[0].cabinet_right.row_4
+
+        // RIGHT CABINET (TOP SIDE)
+        //  ===================================
+        //1st Row Top side
+        svg.append("g")
+        .selectAll("#row_1")
+        .data(data[0].cabinet_right.row_1)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row1_x[i]
+            })
+            .attr("y", 130) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row1[i].name
+            })
+            .attr("class", "row_1");
+        
+
+        //2nd Row Top side
+        svg.selectAll("#row_2")
+        .data(data[0].cabinet_right.row_2)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row2_x[i]
+            })
+            .attr("y", 90) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row2[i].name
+            })
+            .attr("class", "row_2")
+        
+        // 3rd Row Top side
+        svg.selectAll("#row_3")
+        .data(data[0].cabinet_right.row_3)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row3_x[i]
+            })
+            .attr("y", 50) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row3[i].name
+            })
+            .attr("class", "row_3");
+        
+        // 4th Row Top side
+        svg.selectAll("#row_4")
+        .data(data[0].cabinet_right.row_4)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row4_x[i]
+            })
+            .attr("y", 10) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row4[i].name
+            })
+            .attr("class", "row_3");
+        
+        //  ===================================
+        
+        // LEFT CABINET (BOTTOM SIDE)
+        //  ===================================
+        //1st Row Bottom side
+        svg.append("g")
+        .selectAll("#row_1")
+        .data(data[0].cabinet_right.row_1)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row1_x[i]
+            })
+            .attr("y", 260) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row1[i].name
+            })
+            .attr("class", "row_1");
+        
+
+        //2nd Row Top side
+        svg.selectAll("#row_2")
+        .data(data[0].cabinet_right.row_2)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row2_x[i]
+            })
+            .attr("y", 300) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row2[i].name
+            })
+            .attr("class", "row_2")
+        
+        // 3rd Row Top side
+        svg.selectAll("#row_3")
+        .data(data[0].cabinet_right.row_3)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row3_x[i]
+            })
+            .attr("y", 340) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row3[i].name
+            })
+            .attr("class", "row_3");
+        
+        // 4th Row Top side
+        svg.selectAll("#row_4")
+        .data(data[0].cabinet_right.row_4)
+        .enter()
+            .append("rect")
+            .attr("x", function(d, i){
+                return row4_x[i]
+            })
+            .attr("y", 380) 
+            .attr("fill", "white")
+            .attr("stroke", "black")
+            .attr("id", function(d, i){
+                return row4[i].name
+            })
+            .attr("class", "row_3");
+        
+        //  ===================================
+        let party_clr = d3.scaleOrdinal()
+            .domain([1, 3])
+            .range(['#FFF1BA', '#93DCAF', '#F595B2'])
+
+        svg.selectAll("rect")
+            .attr("width", width_seat)
+            .attr("height", height_seat) 
+
+            
+        d3.selectAll("rect")
+            .on("mouseover", (event, d) => {
+                d3.select(".tooltip")
+                .text("Test")
+                .style("position", "absolute")
+                .style("background", "#fff")
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY) + "px")
+                .attr("font-weight", "bold")
+                d3.select(event.currentTarget)
+                    .transition()
+                    .duration(300)
+                    .attr("stroke", "yellow")
+                    .attr("stroke-width", 0.2)
+            })
+        .on("mouseout", (event, d) => {
+            d3.select(".tooltip")
+            .transition()
+            .duration(5000)
+            .text("")
+            d3.select(event.currentTarget)
+                    .transition()
+                    .duration(300)
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 1)
+})
+        
+})
+
+</script>
+</body>
+
+</html>
