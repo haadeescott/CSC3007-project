@@ -39,8 +39,6 @@ setPosition_xRow(16, row3_x, 450)
 // 4TH ROW (6 COLUMNS)
 setPosition_xRow(6, row4_x, 650)
 
-
-
     var svg = d3.select("body")
  			.append("svg")
            	.attr("width", width)
@@ -49,6 +47,10 @@ setPosition_xRow(6, row4_x, 650)
            	.style('background-color', 'lightgrey');
 
     let width_seat = 39, height_seat = 32
+
+    let party_clr = d3.scaleOrdinal()
+            .domain([1, 3])
+            .range(['#FFF1BA', '#93DCAF', '#F595B2'])
     
     Promise.all([d3.json("test.json")]).then(data => {
 
@@ -144,7 +146,7 @@ setPosition_xRow(6, row4_x, 650)
             .attr("id", function(d, i){
                 return row1[i].name
             })
-            .attr("class", "row_1");
+            .attr("class", "row_1")
         
 
         //2nd Row Top side
@@ -196,13 +198,13 @@ setPosition_xRow(6, row4_x, 650)
             .attr("class", "row_3");
         
         //  ===================================
-        let party_clr = d3.scaleOrdinal()
-            .domain([1, 3])
-            .range(['#FFF1BA', '#93DCAF', '#F595B2'])
+        
 
         svg.selectAll("rect")
             .attr("width", width_seat)
-            .attr("height", height_seat) 
+            .attr("height", height_seat)
+            .style("fill", d => party_clr(d.party))
+
 
             
         d3.selectAll("rect")
