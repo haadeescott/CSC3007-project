@@ -8,15 +8,14 @@
 }
 .tooltip {
     position: absolute;
-    border-style:solid;
+    border-style:inset;
 
 }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 </head>
 <body>
-    <p id="parliament_x" class="display-2 text-center">test</p>
-
+    <div id="title"></div>
     <div id="wrapper" class="wrapper">
         <div id="tooltip" class="tooltip">
            <div class="tooltip-title"></div>
@@ -24,10 +23,15 @@
            <div class="tooltip-content"></div>
         </div>
     </div>
+    <div id="button-area">
 
+    </div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
-let width = 260000, height = 900;
+Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
+                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json")]).then(data => {
+
+                    let width = 2600, height = 900;
 
 // x axis for each row on chamber
 var row1_x = []
@@ -64,21 +68,17 @@ setPosition_xRow(6, row4_x, 650)
     let party_clr = d3.scaleOrdinal()
             .domain([1, 4])
             .range(['#95f5d8', '#C0A6D6', '#F595B2', '#FFF1BA'])
-            
-    Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
-                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json")]).then(data => {
 
-                
+
                 data_11 = data[0]
                 data_12 = data[1]
                 data_13 = data[2]
                 data_14 = data[3]
 
+                updateParliament(data_11)
                 
 
-                onload(data_11)
-
-                function onload(d){
+                function updateParliament(d){
                         let row1 = d.chamber_right.row_1
                         let row2 = d.chamber_right.row_2
                         let row3 = d.chamber_right.row_3
@@ -235,8 +235,14 @@ setPosition_xRow(6, row4_x, 650)
                             .style("fill", d => d.party === '-' ? 'white': party_clr(d.party))
 
 
-                            
-                        d3.selectAll("rect")
+                            d3.select("#title")
+                            .append("h1")
+                            .append("text")
+                            .text(d.parliament)
+                            .attr("class", "text-center")
+                            .attr("class", "display-2")
+                        
+                            d3.selectAll("rect")
                             
                             .on("mouseover", (event, d) => {
                                 d3.select(event.currentTarget)
@@ -271,10 +277,50 @@ setPosition_xRow(6, row4_x, 650)
                             // .duration(9000)
                             .style("opacity", 0)
                             })
-                d3.selectAll(".parliament_x")
-                    .text(d.parliament)
+                
                     
-                }     
+                } // end of updateParliament
+                d3.select("#button-area")
+                .append("button")
+                .attr("class", "button_year")
+                .append("text")
+                .text("11th Parliament")
+                .on("click", (event,d) =>{
+                    d3.select("#title")
+                        .text("")
+                    updateParliament(data_11)
+                })
+                d3.select("#button-area")
+                .append("button")
+                .attr("class", "button_year")
+                .append("text")
+                .text("12th Parliament")
+                .on("click", (event,d) =>{
+                    d3.select("#title")
+                        .text("")
+                    updateParliament(data_12)
+                })
+                d3.select("#button-area")
+                .append("button")
+                .attr("class", "button_year")
+                .append("text")
+                .text("13th Parliament")
+                .on("click", (event,d) =>{
+                    d3.select("#title")
+                        .text("")
+                    updateParliament(data_13)
+                })
+                d3.select("#button-area")
+                .append("button")
+                .attr("class", "button_year")
+                .append("text")
+                .text("14th Parliament")
+                .on("click", (event,d) =>{
+                    d3.select("#title")
+                        .text("")
+                    updateParliament(data_14)
+                })
+                
         
     })
 
