@@ -24,8 +24,8 @@
         </div>
     </div>
     <div id="button-area">
-
     </div>
+    <div id="pie-chart-area"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
@@ -66,8 +66,8 @@ setPosition_xRow(6, row4_x, 650)
     let width_seat = 39, height_seat = 32
 
     let party_clr = d3.scaleOrdinal()
-            .domain([1, 4])
-            .range(['#95f5d8', '#C0A6D6', '#F595B2', '#FFF1BA'])
+            .domain([1, 5])
+            .range(['#95f5d8', '#C0A6D6', '#F595B2', '#FFF1BA', '#8E9CE8'])
 
 
                 data_11 = data[0]
