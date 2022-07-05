@@ -3,21 +3,31 @@
 <head>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-        .tooltip2{
-    pointer-events: none
-    /* display: inline-block;
-    border: 1px solid #777777;
-    border-width: 2px;
-    border-bottom-color: black; */
+        .wrapper {
+    position: relative;
+}
+.tooltip {
+    position: absolute;
+    border-style:solid;
+
 }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 </head>
 <body>
-    <h1 class="display-2 text-center">14th Parliament</h1>
-    <div class="mini_tooltip"></div>
+    <p id="parliament_x" class="display-2 text-center">test</p>
+
+    <div id="wrapper" class="wrapper">
+        <div id="tooltip" class="tooltip">
+           <div class="tooltip-title"></div>
+        </br>
+           <div class="tooltip-content"></div>
+        </div>
+    </div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
-let width = 1900, height = 900;
+let width = 260000, height = 900;
 
 // x axis for each row on chamber
 var row1_x = []
@@ -55,198 +65,218 @@ setPosition_xRow(6, row4_x, 650)
             .domain([1, 4])
             .range(['#95f5d8', '#C0A6D6', '#F595B2', '#FFF1BA'])
             
-    Promise.all([d3.json("12th_seating_plan.json")]).then(data => {
+    Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
+                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json")]).then(data => {
 
-        // console.log(data[0].chamber_left)
+                
+                data_11 = data[0]
+                data_12 = data[1]
+                data_13 = data[2]
+                data_14 = data[3]
 
-        let row1 = data[0].chamber_right.row_1
-        let row2 = data[0].chamber_right.row_2
-        let row3 = data[0].chamber_right.row_3
-        let row4 = data[0].chamber_right.row_4
-        let row5 = data[0].chamber_left.row_5
-        let row6 = data[0].chamber_left.row_6
-        let row7 = data[0].chamber_left.row_7
-        let row8 = data[0].chamber_left.row_8
+                
 
-        // RIGHT CABINET (TOP SIDE)
-        //  ===================================
-        //1st Row Top side
-        svg.append("g")
-        .selectAll("#row_1")
-        .data(data[0].chamber_right.row_1)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row1_x[i]
-            })
-            .attr("y", 130) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row1[i].name
-            })
-            .attr("class", "row_1");
-        
+                onload(data_11)
 
-        //2nd Row Top side
-        svg.selectAll("#row_2")
-        .data(data[0].chamber_right.row_2)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row2_x[i]
-            })
-            .attr("y", 90) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row2[i].name
-            })
-            .attr("class", "row_2")
-        
-        // 3rd Row Top side
-        svg.selectAll("#row_3")
-        .data(data[0].chamber_right.row_3)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row3_x[i]
-            })
-            .attr("y", 50) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row3[i].name
-            })
-            .attr("class", "row_3");
-        
-        // 4th Row Top side
-        svg.selectAll("#row_4")
-        .data(data[0].chamber_right.row_4)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row4_x[i]
-            })
-            .attr("y", 10) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row4[i].name
-            })
-            .attr("class", "row_3");
-        
-        //  ===================================
-        
-        // LEFT CABINET (BOTTOM SIDE)
-        //  ===================================
-        //1st Row Bottom side
-        svg.append("g")
-        .selectAll("#row_5")
-        .data(data[0].chamber_left.row_5)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row1_x[i]
-            })
-            .attr("y", 260) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row5[i].name
-            })
-            .attr("class", "row_5")
-        
+                function onload(d){
+                        let row1 = d.chamber_right.row_1
+                        let row2 = d.chamber_right.row_2
+                        let row3 = d.chamber_right.row_3
+                        let row4 = d.chamber_right.row_4
+                        let row5 = d.chamber_left.row_5
+                        let row6 = d.chamber_left.row_6
+                        let row7 = d.chamber_left.row_7
+                        let row8 = d.chamber_left.row_8
 
-        //2nd Row Top side
-        svg.selectAll("#row_6")
-        .data(data[0].chamber_left.row_6)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row2_x[i]
-            })
-            .attr("y", 300) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row6[i].name
-            })
-            .attr("class", "row_6")
-        
-        // 3rd Row Top side
-        svg.selectAll("#row_7")
-        .data(data[0].chamber_left.row_7)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row3_x[i]
-            })
-            .attr("y", 340) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row7[i].name
-            })
-            .attr("class", "row_7");
-        
-        // 4th Row Top side
-        svg.selectAll("#row_8")
-        .data(data[0].chamber_left.row_8)
-        .enter()
-            .append("rect")
-            .attr("x", function(d, i){
-                return row4_x[i]
-            })
-            .attr("y", 380) 
-            .attr("fill", "white")
-            .attr("stroke", "black")
-            .attr("id", function(d, i){
-                return row8[i].name
-            })
-            .attr("class", "row_8");
-        
-        //  ===================================
-        
+                        // RIGHT CABINET (TOP SIDE)
+                        //  ===================================
+                        //1st Row Top side
+                        svg.append("g")
+                        .selectAll("#row_1")
+                        .data(d.chamber_right.row_1)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row1_x[i]
+                            })
+                            .attr("y", 130) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row1[i].name
+                            })
+                            .attr("class", "row_1");
+                        
 
-        svg.selectAll("rect")
-            .attr("width", width_seat)
-            .attr("height", height_seat)
-            .style("fill", d => d.party === '-' ? 'white': party_clr(d.party))
+                        //2nd Row Top side
+                        svg.selectAll("#row_2")
+                        .data(d.chamber_right.row_2)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row2_x[i]
+                            })
+                            .attr("y", 90) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row2[i].name
+                            })
+                            .attr("class", "row_2")
+                        
+                        // 3rd Row Top side
+                        svg.selectAll("#row_3")
+                        .data(d.chamber_right.row_3)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row3_x[i]
+                            })
+                            .attr("y", 50) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row3[i].name
+                            })
+                            .attr("class", "row_3");
+                        
+                        // 4th Row Top side
+                        svg.selectAll("#row_4")
+                        .data(d.chamber_right.row_4)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row4_x[i]
+                            })
+                            .attr("y", 10) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row4[i].name
+                            })
+                            .attr("class", "row_3");
+                        
+                        //  ===================================
+                        
+                        // LEFT CABINET (BOTTOM SIDE)
+                        //  ===================================
+                        //1st Row Bottom side
+                        svg.append("g")
+                        .selectAll("#row_5")
+                        .data(d.chamber_left.row_5)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row1_x[i]
+                            })
+                            .attr("y", 260) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row5[i].name
+                            })
+                            .attr("class", "row_5")
+                        
+
+                        //2nd Row Top side
+                        svg.selectAll("#row_6")
+                        .data(d.chamber_left.row_6)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row2_x[i]
+                            })
+                            .attr("y", 300) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row6[i].name
+                            })
+                            .attr("class", "row_6")
+                        
+                        // 3rd Row Top side
+                        svg.selectAll("#row_7")
+                        .data(d.chamber_left.row_7)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row3_x[i]
+                            })
+                            .attr("y", 340) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row7[i].name
+                            })
+                            .attr("class", "row_7");
+                        
+                        // 4th Row Top side
+                        svg.selectAll("#row_8")
+                        .data(d.chamber_left.row_8)
+                        .enter()
+                            .append("rect")
+                            .attr("x", function(d, i){
+                                return row4_x[i]
+                            })
+                            .attr("y", 380) 
+                            .attr("fill", "white")
+                            .attr("stroke", "black")
+                            .attr("id", function(d, i){
+                                return row8[i].name
+                            })
+                            .attr("class", "row_8");
+                        
+                        //  ===================================
+                        
+
+                        svg.selectAll("rect")
+                            .attr("width", width_seat)
+                            .attr("height", height_seat)
+                            .style("fill", d => d.party === '-' ? 'white': party_clr(d.party))
 
 
-            
-        d3.selectAll("rect")
-            .on("mouseover", (event, d) => {
-                d3.select(".mini_tooltip")
-                .text(
-                    "Party: " + d.party + ", "
-                    + "Name: " + d.name
-                    )
-                .style("position", "absolute")
-                .style("background", "#fff")
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY) + "px")
-                .attr("font-weight", "bold")
-                d3.select(event.currentTarget)
-                    .transition()
-                    .duration(300)
-                    .attr("stroke", "yellow")
-                    .attr("stroke-width", 0.2)
-            })
-        .on("mouseout", (event, d) => {
-            d3.select(".mini_tooltip")
-            .transition()
-            .duration(5000)
-            .text("")
-            d3.select(event.currentTarget)
-                    .transition()
-                    .duration(300)
-                    .attr("stroke", "black")
-                    .attr("stroke-width", 1)
-})
+                            
+                        d3.selectAll("rect")
+                            
+                            .on("mouseover", (event, d) => {
+                                d3.select(event.currentTarget)
+                                    .transition()
+                                    .duration(30)
+                                    .attr("stroke", "white")
+                                    .style("opacity", 0.5)
+
+                                d3.select(".tooltip")
+                                .text(
+                                    "Party: " + d.party + ", "
+                                    + "Name: " + d.name
+                                    )
+                                .style("background", "#fff")
+                                .style("left", (event.pageX) + "px")
+                                .style("top", (event.pageY) + "px")
+                                .style("font-weight", "bold")
+                                .style('font-size', '24px')
+                                .style("opacity", 1)
+                                
+
+                                
+                            })
+                        .on("mouseout", (event, d) => {
+                            d3.select(event.currentTarget)
+                                    .transition()
+                                    .duration(30)
+                                    .attr("stroke", "black")
+                                    .style("opacity", 1)
+                            d3.select(".tooltip")
+                            // .transition()
+                            // .duration(9000)
+                            .style("opacity", 0)
+                            })
+                d3.selectAll(".parliament_x")
+                    .text(d.parliament)
+                    
+                }     
         
-})
+    })
 
 </script>
 </body>
