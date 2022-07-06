@@ -1,40 +1,39 @@
 {
     "GE_2006":{
-        "Vacant": 21,
-        "Parliament_Seats": 82,
-        "Nominated_MP": 9,
-        "PAP":[
+        
+        "PAP":
             {
                 "Party_Name": "People's Action Party",
                 "Candidates": 84,
                 "Leader": "Lee Hsien Loong",
                 "Won": 79
             }
-        ],
-        "WP":[
+        ,
+        "WP":
             {
                 "Party_Name": "Worker Party",
                 "Candidates": 20,
                 "Leader": "Low Thia Khiang",
                 "Won": 2
             }
-        ],
-        "SDA":[
+        ,
+        "SDA":
             {
                 "Party_Name": "Singapore Democratic Alliance",
                 "Candidates": 20,
                 "Leader": "Chiam See Tong",
                 "Won": 1
             }
-        ],
-        "SDP":[
+        ,
+        "SDP":
             {
                 "Party_Name": "Singapore Democratic Party",
                 "Candidates": 7,
                 "Leader": "Chee Soon Juan",
                 "Won": 0
             }
-        ]
+        
+        
     },
     "GE_2011":
     {

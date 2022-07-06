@@ -11,27 +11,36 @@
     border-style:inset;
 
 }
+.center {
+margin: auto;
+width: 1%;
+/* border: 5px solid #FFFF00; */
+padding: 10px;
+}
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 </head>
 <body>
     <div id="title"></div>
-    <div id="wrapper" class="wrapper">
-        <div id="tooltip" class="tooltip">
-           <div class="tooltip-title"></div>
-        </br>
-           <div class="tooltip-content"></div>
-        </div>
-    </div>
-    <div id="button-area">
-    </div>
-    <div id="pie-chart-area"></div>
+    
+        
+            <div id="button-area">
+            </div>
+
+            <div id="wrapper" class="wrapper">
+                <div id="tooltip" class="tooltip">
+                </div> 
+            </div>
+            <div id="pie-chart-area" class="center">
+                <svg id="svg_pie" width="500" height="400"></svg>
+            </div>
+    
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
-                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json")]).then(data => {
+                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json"), d3.json("GE.json")]).then(data => {
 
-                    let width = 2600, height = 900;
+let width = 2600, height = 500;
 
 // x axis for each row on chamber
 var row1_x = []
@@ -48,13 +57,13 @@ function setPosition_xRow(columns, row, input){
 
 // LAYOUT OF SINGAPORE PARLIAMENT => Total 112 seats available
 // 1ST ROW (18 COLUMNS) each seat is +50 apart 
-setPosition_xRow(18, row1_x, 400)
+setPosition_xRow(18, row1_x, (width/4))
 // 2ND ROW (16 COLUMNS)
-setPosition_xRow(16, row2_x, 450)
+setPosition_xRow(16, row2_x, (width/4)+50)
 // 3RD ROW (16 COLUMNS)
-setPosition_xRow(16, row3_x, 450)
+setPosition_xRow(16, row3_x, (width/4)+50)
 // 4TH ROW (6 COLUMNS)
-setPosition_xRow(6, row4_x, 650)
+setPosition_xRow(6, row4_x, (width/4)+250)
 
     var svg = d3.select("body")
  			.append("svg")
@@ -74,7 +83,12 @@ setPosition_xRow(6, row4_x, 650)
                 data_12 = data[1]
                 data_13 = data[2]
                 data_14 = data[3]
+                data_GE_06 = data[4].GE_2006
+                data_GE_11 = data[4].GE_2011
+                data_GE_15 = data[4].GE_2015
+                data_GE_20 = data[4].GE_2020
 
+                
                 updateParliament(data_11)
                 
 
@@ -234,7 +248,7 @@ setPosition_xRow(6, row4_x, 650)
                             .attr("height", height_seat)
                             .style("fill", d => d.party === '-' ? 'white': party_clr(d.party))
 
-
+                            
                             d3.select("#title")
                             .append("h1")
                             .append("text")
@@ -249,8 +263,9 @@ setPosition_xRow(6, row4_x, 650)
                                     .transition()
                                     .duration(30)
                                     .attr("stroke", "white")
-                                    .style("opacity", 0.5)
-
+                                    .attr("stroke-width", 4)
+                                    // .style("opacity", 0.2)
+                                
                                 d3.select(".tooltip")
                                 .text(
                                     "Party: " + d.party + ", "
@@ -271,10 +286,9 @@ setPosition_xRow(6, row4_x, 650)
                                     .transition()
                                     .duration(30)
                                     .attr("stroke", "black")
+                                    .attr("stroke-width", 1)
                                     .style("opacity", 1)
                             d3.select(".tooltip")
-                            // .transition()
-                            // .duration(9000)
                             .style("opacity", 0)
                             })
                 
@@ -320,8 +334,74 @@ setPosition_xRow(6, row4_x, 650)
                         .text("")
                     updateParliament(data_14)
                 })
+
+                // Pie chart 
+                // ==============================================
+
+                Candidates = []
+                function getCandidates(data){
+                    j = 0
+                    for(const i in data){
+                        Candidates[j] = data[i].Candidates
+                        j++
+                    }
+                }
+
+                Parties = []
+                function getParty(data){
+                    j = 0
+                    for(const i in data){
+                        Parties[j] = i
+                        j++
+                    }
+                }
+
+                getCandidates(data_GE_06)
+                getParty(data_GE_06)
+                // console.log(arr)
+                var svg_pie = d3.select("#svg_pie"),
+                    new_width = svg_pie.attr("width"),
+                    new_height = svg_pie.attr("height"),
+                    radius = Math.min(new_width, new_height) / 2,
+                    g = svg_pie.append("g").attr("transform", "translate(" + new_width / 2 + "," + new_height / 2 + ")");
+
+                var color = d3.scaleOrdinal()
+                .domain([0,5])
+                .range(['orange', 'blue', 'green', 'yellow', 'purple']);
+
+                // Generate the pie
+                var pie = d3.pie();
+
+                // Generate the arcs
+                var arc = d3.arc()
+                            .innerRadius(0)
+                            .outerRadius(radius);
+
+                //Generate groups
+                var arcs = g.selectAll("arc")
+                            .data(pie(Candidates))
+                            .enter()
+                            .append("g")
+                            .attr("class", "arc")
+
+                //Draw arc paths
+                arcs.append("path")
+                    .attr("fill", function(data_GE_06, i){
+                        return color(i)
+                    })
+                    .attr("d", arc)
                 
-        
+                arcs.append("text")
+                .attr("transform", function(d) { 
+                        return "translate(" + arc.centroid(d) + ")"; 
+                })
+                .text(function(d, i){
+                    return Parties[i]
+                }
+                )
+                .attr("fill", "black")
+                .attr("font-weight", "bold")
+         
     })
 
 </script>
