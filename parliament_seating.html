@@ -38,7 +38,8 @@ padding: 10px;
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
-                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json"), d3.json("GE.json")]).then(data => {
+                , d3.json("13th_seating_plan.json"), d3.json("14th_seating_plan.json")
+                , d3.json("GE.json"), d3.json("GE_details.json")]).then(data => {
 
 let width = 2600, height = 500;
 
@@ -87,6 +88,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 data_GE_11 = data[4].GE_2011
                 data_GE_15 = data[4].GE_2015
                 data_GE_20 = data[4].GE_2020
+                data_GE_details = data[5]
 
                 
                 updateParliament(data_11)
@@ -303,6 +305,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     d3.select("#title")
                         .text("")
                     updateParliament(data_11)
+                    generatePie(data_GE_06)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -313,6 +316,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     d3.select("#title")
                         .text("")
                     updateParliament(data_12)
+                    generatePie(data_GE_11)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -323,6 +327,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     d3.select("#title")
                         .text("")
                     updateParliament(data_13)
+                    generatePie(data_GE_15)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -333,12 +338,12 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     d3.select("#title")
                         .text("")
                     updateParliament(data_14)
+                    generatePie(data_GE_20)
                 })
 
                 // Pie chart 
                 // ==============================================
 
-                Candidates = []
                 function getCandidates(data){
                     j = 0
                     for(const i in data){
@@ -347,7 +352,6 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     }
                 }
 
-                Parties = []
                 function getParty(data){
                     j = 0
                     for(const i in data){
@@ -356,8 +360,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     }
                 }
 
-                getCandidates(data_GE_06)
-                getParty(data_GE_06)
+                
                 // console.log(arr)
                 var svg_pie = d3.select("#svg_pie"),
                     new_width = svg_pie.attr("width"),
@@ -366,41 +369,63 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     g = svg_pie.append("g").attr("transform", "translate(" + new_width / 2 + "," + new_height / 2 + ")");
 
                 var color = d3.scaleOrdinal()
-                .domain([0,5])
-                .range(['orange', 'blue', 'green', 'yellow', 'purple']);
+                .domain([0,20])
+                .range(['orange', 'blue', 'green', 'yellow', 'purple', 'brown', 'pink', 'cyan', 'magenta', 'teal']);
 
-                // Generate the pie
-                var pie = d3.pie();
+                function generatePie(d){
+                    
+                    d3.selectAll("#text_pie")
+                    .text(" ")
 
-                // Generate the arcs
-                var arc = d3.arc()
-                            .innerRadius(0)
-                            .outerRadius(radius);
+                    d3.selectAll("path")
+                    .remove()
 
-                //Generate groups
-                var arcs = g.selectAll("arc")
-                            .data(pie(Candidates))
-                            .enter()
-                            .append("g")
-                            .attr("class", "arc")
+                    g.selectAll("arc")
+                    .remove()
 
-                //Draw arc paths
-                arcs.append("path")
-                    .attr("fill", function(data_GE_06, i){
-                        return color(i)
+                    Candidates = []
+                    Parties = []
+                    getCandidates(d)
+                    getParty(d)
+
+                    // Generate the pie
+                    var pie = d3.pie();
+
+                    // Generate the arcs
+                    var arc = d3.arc()
+                                .innerRadius(0)
+                                .outerRadius(radius);
+
+                    //Generate groups
+                    var arcs = g.selectAll("arc")
+                                .data(pie(Candidates))
+                                .enter()
+                                .append("g")
+                                .attr("class", "arc")
+
+                    //Draw arc paths
+                    arcs.append("path")
+                        
+                        .attr("fill", function(d, i){
+                            return color(i)
+                        })
+                        .attr("d", arc)
+
+                    arcs.append("text")
+                    .attr("id", "text_pie")
+                    .attr("transform", function(d) { 
+                            return "translate(" + arc.centroid(d) + ")"; 
                     })
-                    .attr("d", arc)
-                
-                arcs.append("text")
-                .attr("transform", function(d) { 
-                        return "translate(" + arc.centroid(d) + ")"; 
-                })
-                .text(function(d, i){
-                    return Parties[i]
+                    .text(function(d, i){
+                        return Parties[i]
+                    }
+                    )
+                    .attr("fill", "black")
+                    .attr("font-weight", "bold")
                 }
-                )
-                .attr("fill", "black")
-                .attr("font-weight", "bold")
+                generatePie(data_GE_06)
+                
+
          
     })
 

@@ -1,0 +1,22 @@
+{
+    "GE_2006":{
+        "Vacant":21,
+        "Parliament_Seats": 82,
+        "Nominated_MP": 9
+    },
+    "GE_2011":{
+        "Vacant": 15,
+        "Parliament_Seats": 88,
+        "Nominated_MP": 9
+    },
+    "GE_2015":{
+        "Vacant": 13,
+        "Parliament_Seats": 90,
+        "Nominated_MP": 9
+    },
+    "GE_2020":{
+        "Vacant": 10,
+        "Parliament_Seats": 93,
+        "Nominated_MP": 9
+    }
+}

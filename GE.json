@@ -1,6 +1,5 @@
 {
     "GE_2006":{
-        
         "PAP":
             {
                 "Party_Name": "People's Action Party",
@@ -37,247 +36,240 @@
     },
     "GE_2011":
     {
-        "Vacant": 15,
-        "Parliament_Seats": 88,
-        "Nominated_MP": 9,
-        "PAP":[
+        "PAP":
             {
                 "Party_Name": "People's Action Party",
                 "Candidates": 87,
                 "Leader": "Lee Hsien Loong",
                 "Won": 79
             }
-        ],
-        "WP":[
+        ,
+        "WP":
             {
                 "Party_Name": "Worker Party",
                 "Candidates": 23,
                 "Leader": "Low Thia Khiang",
                 "Won": 8
             }
-        ],
-        "SDA":[
+        ,
+        "SDA":
             {
                 "Party_Name": "Singapore Democratic Alliance",
                 "Candidates": 7,
                 "Leader": "Desmond Lim",
                 "Won": 0
             }
-        ],
-        "SDP":[
+        ,
+        "SDP":
             {
                 "Party_Name": "Singapore Democratic Party",
                 "Candidates": 11,
                 "Leader": "Chee Soon Juan",
                 "Won": 0
             }
-        ],
-        "NSP":[
+        ,
+        "NSP":
             {
                 "Party_Name": "National Solidarity Party",
                 "Candidates": 24,
                 "Leader": "Sebastian Teo",
                 "Won": 0
             }
-        ],
-        "RP":[
+        ,
+        "RP":
             {
                 "Party_Name": "Reform Party",
                 "Candidates": 11,
                 "Leader": "Kenneth Jeyaretnam",
                 "Won": 0
             }
-        ],
-        "SPP":[
+        ,
+        "SPP":
             {
                 "Party_Name": "Singapore People's Party",
                 "Candidates": 7,
                 "Leader": "Chiam See Tong",
                 "Won": 1
             }
-        ]
+        
     },
     "GE_2015":
     {
-        "Vacant": 13,
-        "Parliament_Seats": 90,
-        "Nominated_MP": 9,
-        "PAP":[
+        
+        "PAP":
             {
                 "Party_Name": "People's Action Party",
                 "Candidates": 89,
                 "Leader": "Lee Hsien Loong",
                 "Won": 81
             }
-        ],
-        "WP":[
+        ,
+        "WP":
             {
                 "Party_Name": "Worker Party",
                 "Candidates": 28,
                 "Leader": "Low Thia Khiang",
                 "Won": 9
             }
-        ],
-        "SDA":[
+        ,
+        "SDA":
             {
                 "Party_Name": "Singapore Democratic Alliance",
                 "Candidates": 6,
                 "Leader": "Desmond Lim",
                 "Won": 0
             }
-        ],
-        "SDP":[
+        ,
+        "SDP":
             {
                 "Party_Name": "Singapore Democratic Party",
                 "Candidates": 11,
                 "Leader": "Chee Soon Juan",
                 "Won": 0
             }
-        ],
-        "NSP":[
+        ,
+        "NSP":
             {
                 "Party_Name": "National Solidarity Party",
                 "Candidates": 12,
                 "Leader": "Sebastian Teo",
                 "Won": 0
             }
-        ],
-        "RP":[
+        ,
+        "RP":
             {
                 "Party_Name": "Reform Party",
                 "Candidates": 11,
                 "Leader": "Kenneth Jeyaretnam",
                 "Won": 0
             }
-        ],
-        "SPP":[
+        ,
+        "SPP":
             {
                 "Party_Name": "Singapore People's Party",
                 "Candidates": 8,
                 "Leader": "Chiam See Tong",
                 "Won": 0
             }
-        ],
-        "SingFirst":[
+        ,
+        "SingFirst":
             {
                 "Party_Name": "Singaporeans First",
                 "Candidates": 10,
                 "Leader": "Tan Jee Say",
                 "Won": 0 
             }
-        ],
-        "PPP":[
+        ,
+        "PPP":
             {
                 "Party_Name": "People's Power Party",
                 "Candidates": 4,
                 "Leader": "Goh Meng Seng",
                 "Won": 0
             }
-        ],
-        "Independent Candidate":[
+        ,
+        "Independent Candidate":
             {
                 "Candidates": 2,
                 "Won": 0
             }
-        ]
+        
     },
     "GE_2020":{
-        "Vacant": 10,
-        "Parliament_Seats": 93,
-        "Nominated_MP": 9,
-        "PAP":[
+        
+        "PAP":
             {
                 "Party_Name": "People's Action Party",
                 "Candidates": 93,
                 "Leader": "Lee Hsien Loong",
                 "Won": 82
             }
-        ],
-        "WP":[
+        ,
+        "WP":
             {
                 "Party_Name": "Worker Party",
                 "Candidates": 21,
                 "Leader": "Pritam Singh",
                 "Won": 9
             }
-        ],
-        "SDA":[
+        ,
+        "SDA":
             {
                 "Party_Name": "Singapore Democratic Alliance",
                 "Candidates": 5,
                 "Leader": "Desmond Lim",
                 "Won": 0
             }
-        ],
-        "SDP":[
+        ,
+        "SDP":
             {
                 "Party_Name": "Singapore Democratic Party",
                 "Candidates": 11,
                 "Leader": "Chee Soon Juan",
                 "Won": 0
             }
-        ],
-        "NSP":[
+        ,
+        "NSP":
             {
                 "Party_Name": "National Solidarity Party",
                 "Candidates": 12,
                 "Leader": "Fong Chin Leong",
                 "Won": 0
             }
-        ],
-        "RP":[
+        ,
+        "RP":
             {
                 "Party_Name": "Reform Party",
                 "Candidates": 6,
                 "Leader": "Kenneth Jeyaretnam",
                 "Won": 0
             }
-        ],
-        "SPP":[
+        ,
+        "SPP":
             {
                 "Party_Name": "Singapore People's Party",
                 "Candidates": 5,
                 "Leader": "Steve Chia",
                 "Won": 1
             }
-        ],
-        "PPP":[
+        ,
+        "PPP":
             {
                 "Party_Name": "People's Power Party",
                 "Candidates": 1,
                 "Leader": "Goh Meng Seng",
                 "Won": 0
             }
-        ],
-        "PSP":[
+        ,
+        "PSP":
             {
                 "Party_Name": "Progress Singapore Party",
                 "Candidates": 24,
                 "Leader": "Tang Cheng Bok",
                 "Won": 0
             }
-        ],
-        "PV":[
+        ,
+        "PV":
             {
                 "Party_Name": "Peoples Voice",
                 "Candidates": 10,
                 "Leader": "Lim Tean",
                 "Won": 0
             }
-        ],
-        "RDU":[
+        ,
+        "RDU":
             {
                 "Party_Name": "Red Dot United",
                 "Candidates": 5,
                 "Leader": "Ravi Philemon",
                 "Won": 0
             }
-        ],
-        "Independent Candidate":[
+        ,
+        "Independent Candidate":
             {
                 "Candidates": 1,
                 "Won": 0
             }
-        ]
+        
     }
 }
