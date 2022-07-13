@@ -23,7 +23,6 @@ padding: 10px;
 <body>
     <div id="title"></div>
     
-        
             <div id="button-area">
             </div>
 
@@ -31,9 +30,18 @@ padding: 10px;
                 <div id="tooltip" class="tooltip">
                 </div> 
             </div>
-            <div id="pie-chart-area" class="center">
+
+            <div class="container">
+            <div class="row">
+            <div id="pie-chart-area" class="col-sm">
                 <svg id="svg_pie" width="500" height="400"></svg>
             </div>
+
+            <div id="line-chart-area" class="col-sm">
+                <svg id="svg_line" width="500" height="400"></svg>
+            </div>
+            </div>
+            </div>  
     
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
@@ -366,7 +374,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     new_width = svg_pie.attr("width"),
                     new_height = svg_pie.attr("height"),
                     radius = Math.min(new_width, new_height) / 2,
-                    g = svg_pie.append("g").attr("transform", "translate(" + new_width / 2 + "," + new_height / 2 + ")");
+                    g_pie = svg_pie.append("g").attr("transform", "translate(" + new_width / 2 + "," + new_height / 2 + ")");
 
                 var color = d3.scaleOrdinal()
                 .domain([0,20])
@@ -380,7 +388,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     d3.selectAll("path")
                     .remove()
 
-                    g.selectAll("arc")
+                    g_pie.selectAll("arc")
                     .remove()
 
                     Candidates = []
@@ -397,7 +405,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                                 .outerRadius(radius);
 
                     //Generate groups
-                    var arcs = g.selectAll("arc")
+                    var arcs = g_pie.selectAll("arc")
                                 .data(pie(Candidates))
                                 .enter()
                                 .append("g")
@@ -405,7 +413,6 @@ setPosition_xRow(6, row4_x, (width/4)+250)
 
                     //Draw arc paths
                     arcs.append("path")
-                        
                         .attr("fill", function(d, i){
                             return color(i)
                         })
@@ -424,7 +431,94 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     .attr("font-weight", "bold")
                 }
                 generatePie(data_GE_06)
+
+
+                // Line chart
+                var data_GE_06_details = data_GE_details.GE_2006
+                var data_GE_11_details = data_GE_details.GE_2011
+                var data_GE_15_details = data_GE_details.GE_2015
+                var data_GE_20_details = data_GE_details.GE_2020
+
+                function getPercentage(d, year){
+                    var pap_power = ((d.PAP.Won) / (year.Parliament_Seats)) * 100
+                    var opp_power =  100 - pap_power
+                    console.log(pap_power)
+                    return pap_power
+                }
+
+                var dataset1 = [
+                    [1, getPercentage(data_GE_06, data_GE_06_details)], 
+                    [2, getPercentage(data_GE_11, data_GE_11_details)],
+                    [3, getPercentage(data_GE_15, data_GE_15_details)],
+                    [4, getPercentage(data_GE_20, data_GE_20_details)]
+                ];
+
+                var svg_line = d3.select("#svg_line"),
+                margin = 200
+                new_width = svg_line.attr("width") - margin,
+                new_height = svg_line.attr("height") - margin
+                g_line = svg_line.append("g").attr("transform", "translate(" + new_width / 3 + "," + new_height / 2 + ")");
+
+
+                var xScale = d3.scaleLinear().domain([1, 4]).range([0, new_width]),
+                yScale = d3.scaleLinear().domain([80, 100]).range([new_height, 0]);
+
+                svg_line.append('text')
+                .attr('x', new_width/2 + 100)
+                .attr('y', 100)
+                .attr('text-anchor', 'middle')
+                .style('font-family', 'Helvetica')
+                .style('font-size', 16)
+                .text('PAP\'s power shift in the Parliament');
                 
+                // X label
+                svg_line.append('text')
+                .attr('x', new_width/2 + 100)
+                .attr('y', new_height - 15 + 150)
+                .attr('text-anchor', 'middle')
+                .style('font-family', 'Helvetica')
+                .style('font-size', 12)
+                
+                
+                // Y label
+                svg_line.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('transform', 'translate(60,' + new_height + ')rotate(-90)')
+                .style('font-family', 'Helvetica')
+                .style('font-size', 12)
+                .text('Percentage of PAP seats');
+
+                g_line.append("g")
+                .attr("transform", "translate(0," + new_height + ")")
+                .call(d3.axisBottom(xScale));
+                
+                g_line.append("g")
+                .call(d3.axisLeft(yScale));
+
+                svg_line.append('g')
+                .selectAll("dot")
+                .data(dataset1)
+                .enter()
+                .append("circle")
+                .attr("cx", function (d) { return xScale(d[0]); } )
+                .attr("cy", function (d) { return yScale(d[1]); } )
+                .attr("r", 2)
+                .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                .style("fill", "#CC0000");
+
+                var line = d3.line()
+                .x(function(d) { return xScale(d[0]); }) 
+                .y(function(d) { return yScale(d[1]); }) 
+                .curve(d3.curveMonotoneX)
+                
+                svg_line.append("path")
+                .datum(dataset1) 
+                .attr("class", "line") 
+                .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                .attr("d", line)
+                .style("fill", "none")
+                .style("stroke", "#CC0000")
+                .style("stroke-width", "2");
 
          
     })
