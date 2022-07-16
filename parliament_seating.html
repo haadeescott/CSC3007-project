@@ -2,6 +2,8 @@
 <meta charset="utf-8">
 <head>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
     <style>
         .wrapper {
     position: relative;
@@ -33,16 +35,18 @@ padding: 10px;
 
             <div class="container">
             <div class="row">
-            <div id="pie-chart-area" class="col-sm">
+                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+            <!-- <div id="pie-chart-area" class="col-sm">
                 <svg id="svg_pie" width="500" height="400"></svg>
-            </div>
+            </div> -->
 
             <div id="line-chart-area" class="col-sm">
                 <svg id="svg_line" width="500" height="400"></svg>
             </div>
             </div>
             </div>  
-    
+
+            
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 Promise.all([d3.json("11th_seating_plan.json"), d3.json("12th_seating_plan.json")
@@ -316,6 +320,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_11)
                     generatePie(data_GE_06, data_GE_06_details)
+                    updateChart()
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -327,6 +332,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_12)
                     generatePie(data_GE_11, data_GE_11_details)
+                    updateChart()
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -338,6 +344,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_13)
                     generatePie(data_GE_15, data_GE_15_details)
+                    updateChart()
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -349,6 +356,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_14)
                     generatePie(data_GE_20, data_GE_20_details)
+                    updateChart()
                 })
 
                 // Pie chart 
@@ -357,16 +365,21 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 function getCandidates(data){
                     j = 0
                     for(const i in data){
-                        Candidates[j] = data[i].Won
-                        j++
+                        if(data[i].Won != 0){ 
+                            Candidates[j] = data[i].Won
+                            j++
+                        }
                     }
                 }
 
                 function getParty(data){
                     j = 0
                     for(const i in data){
-                        Parties[j] = i
-                        j++
+                        if(data[i].Won != 0){
+                            Parties[j] = i
+                            j++
+                        }
+                        
                     }
                 }
 
@@ -377,80 +390,25 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         j++
                     }
                     TotalSeats.splice(1,1)
-                }
-
-                
+                }                
                 TotalSeats = []
-                getTotalSeats(data_GE_06_details)
-                
-                
-                var svg_pie = d3.select("#svg_pie"),
-                    new_width = svg_pie.attr("width"),
-                    new_height = svg_pie.attr("height"),
-                    radius = Math.min(new_width, new_height) / 2,
-                    g_pie = svg_pie.append("g").attr("transform", "translate(" + new_width / 2 + "," + new_height / 2 + ")");
-
-                var color = d3.scaleOrdinal()
-                .domain([0,10])
-                .range(['orange', 'blue', 'green', 'yellow', 'purple', 'brown', 'pink', 'cyan', 'magenta', 'teal']);
 
                 function generatePie(d, d_details){
-                    
-                    d3.selectAll("#text_pie")
-                    .text(" ")
-
-                    d3.selectAll("path")
-                    .remove()
-
-                    g_pie.selectAll("arc")
-                    .remove()
-
                     Candidates = []
                     Parties = []
 
                     getCandidates(d)
                     getParty(d)
                     getTotalSeats(d_details)
+
                     Candidates = Candidates.concat(TotalSeats)
+                    console.log(Candidates)
                     Vacant_NMP = ['Vacant', 'NMP']
                     Parties = Parties.concat(Vacant_NMP)
                     console.log(Parties)
-                    
-                    // Generate the pie
-                    var pie = d3.pie();
 
-                    // Generate the arcs
-                    var arc = d3.arc()
-                                .innerRadius(0)
-                                .outerRadius(radius);
-
-                    //Generate groups
-                    var arcs = g_pie.selectAll("arc")
-                                .data(pie(Candidates))
-                                .enter()
-                                .append("g")
-                                .attr("class", "arc")
-
-                    //Draw arc paths
-                    arcs.append("path")
-                        .attr("fill", function(d, i){
-                            return color(i)
-                        })
-                        .attr("d", arc)
-
-                    arcs.append("text")
-                    .attr("id", "text_pie")
-                    .attr("transform", function(d) { 
-                            return "translate(" + arc.centroid(d) + ")"; 
-                    })
-                    .text(function(d, i){
-                        return Parties[i] + ": " + Candidates[i]
-                    }
-                    )
-                    .attr("fill", "black")
-                    .attr("font-weight", "bold")
                 }
-                generatePie(data_GE_06)
+                generatePie(data_GE_06, data_GE_06_details)
 
 
                 // Line chart                
@@ -534,6 +492,32 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 .style("stroke", "#CC0000")
                 .style("stroke-width", "2");
 
+                
+                // bootstrap pie chart
+                var barColors = ["red", "green", "blue", "orange", "yellow", "purple", "teal", "magenta"];
+                var pieChart = new Chart("myChart", {
+                type: "pie",
+                data: {
+                    labels: Parties,
+                    datasets: [{
+                    backgroundColor: barColors,
+                    data: Candidates
+                    }]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: "Parties in the Parliament"
+                    }
+                }
+                });
+
+                function updateChart(){
+                    pieChart.data.datasets[0].data = Candidates
+                    pieChart.data.labels = Parties
+                    pieChart.update();
+                }
+          
          
     })
 

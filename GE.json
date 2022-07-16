@@ -230,7 +230,7 @@
                 "Party_Name": "Singapore People's Party",
                 "Candidates": 5,
                 "Leader": "Steve Chia",
-                "Won": 1
+                "Won": 0
             }
         ,
         "PPP":
@@ -246,7 +246,7 @@
                 "Party_Name": "Progress Singapore Party",
                 "Candidates": 24,
                 "Leader": "Tang Cheng Bok",
-                "Won": 0
+                "Won": 2
             }
         ,
         "PV":
