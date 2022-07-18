@@ -6,19 +6,19 @@
     </script>
     <style>
         .wrapper {
-    position: relative;
-}
-.tooltip {
-    position: absolute;
-    border-style:inset;
+            position: relative;
+        }
+        .tooltip {
+            position: absolute;
+            border-style:inset;
 
-}
-.center {
-margin: auto;
-width: 1%;
-/* border: 5px solid #FFFF00; */
-padding: 10px;
-}
+        }
+        .center {
+        margin: auto;
+        width: 1%;
+        /* border: 5px solid #FFFF00; */
+        padding: 10px;
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 </head>
@@ -35,15 +35,19 @@ padding: 10px;
 
             <div class="container">
             <div class="row">
+                <div class="col-sm">
                 <canvas id="pieChart" style="width:100%;max-width:700px"></canvas>
             </div>
+            
 
-            <div class="row">
+            <div class="col-sm">
                 <canvas id="lineChart" style="width:100%;max-width:700px"></canvas>
+                <p id="textSeatsGrowth"></p>
             </div>
             
-            <div class ="row">
+            <div class ="col-sm">
                 <canvas id="barChart" style="width:100%;max-width:700px"></canvas>
+            </div>
             </div>
             </div>  
 
@@ -323,7 +327,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_11)
                     generateCharts(data_GE_06, data_GE_06_details)
-                    updateChart()
+                    updateChart(0)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -335,7 +339,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_12)
                     generateCharts(data_GE_11, data_GE_11_details)
-                    updateChart()
+                    updateChart(1)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -347,7 +351,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_13)
                     generateCharts(data_GE_15, data_GE_15_details)
-                    updateChart()
+                    updateChart(2)
                 })
                 d3.select("#button-area")
                 .append("button")
@@ -359,7 +363,7 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                         .text("")
                     updateParliament(data_14)
                     generateCharts(data_GE_20, data_GE_20_details)
-                    updateChart()
+                    updateChart(3)
                 })
 
                 // Charts 
@@ -456,6 +460,8 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     getPercentage_opp(data_GE_20, data_GE_20_details)
                 ];
 
+                console.log(dataset1)
+
                 var xLabel = ['11th Parliament', '12th Parliament', '13th Parliament', '14th Parliament']
                 new Chart("lineChart", {
                 type: "line",
@@ -477,9 +483,9 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     legend: {display: true}
                 }
                 });
-
+                // end of line chart
                 
-                // bootstrap pie chart
+                // pie chart
                 var barColors = ["red", "green", "blue", "orange", 
                 "yellow", "purple", "teal", "magenta", 
                 "cyan", "brown", "pink", "beige"];
@@ -499,12 +505,9 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     }
                 }
                 });
+                // end of pie chart
 
-                
-                // end of bootstrap pie chart
-                // ==========================
-
-                // bootstrap bar chart
+                // bar chart
                 var barChart = new Chart("barChart", {
                 type: "bar",
                 data: {
@@ -524,9 +527,9 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     }
                 }
                 });
-          
+                // end of bar chart
 
-                function updateChart(){
+                function updateChart(i){
                     pieChart.data.datasets[0].data = Candidates_Won
                     pieChart.data.labels = Parties
                     pieChart.update();
@@ -534,7 +537,14 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     barChart.data.datasets[0].data = Candidates
                     barChart.data.labels = PartiesContest
                     barChart.update();
+
+                    document.getElementById("textSeatsGrowth").textContent = 
+                    'Percentage of PAP: '+ Math.floor(dataset1[i])
+                    + '%. Percentage of Opposition: ' + Math.floor(dataset2[i]) + '%.'
                 }
+                
+                // upon 1st page load
+                updateChart(0)
          
     })
 
