@@ -35,13 +35,15 @@ padding: 10px;
 
             <div class="container">
             <div class="row">
-                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                <canvas id="pieChart" style="width:100%;max-width:700px"></canvas>
             <!-- <div id="pie-chart-area" class="col-sm">
                 <svg id="svg_pie" width="500" height="400"></svg>
             </div> -->
 
             <div id="line-chart-area" class="col-sm">
                 <svg id="svg_line" width="500" height="400"></svg>
+                
+                 <canvas id="barChart" style="width:100%;max-width:700px"></canvas>
             </div>
             </div>
             </div>  
@@ -362,11 +364,11 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 // Pie chart 
                 // ==============================================
 
-                function getCandidates(data){
+                function getWon(data){
                     j = 0
                     for(const i in data){
                         if(data[i].Won != 0){ 
-                            Candidates[j] = data[i].Won
+                            Candidates_Won[j] = data[i].Won
                             j++
                         }
                     }
@@ -379,7 +381,6 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                             Parties[j] = i
                             j++
                         }
-                        
                     }
                 }
 
@@ -391,21 +392,45 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                     }
                     TotalSeats.splice(1,1)
                 }                
-                TotalSeats = []
+
+                function getCandidates(data){
+                    j = 0
+                    for(const i in data){
+                        Candidates[j] = data[i].Candidates
+                        j ++
+                    }
+                }
+
+                function getPartiesContest(data){
+                    j = 0
+                    for(const i in data){
+                        PartiesContest[j] = i
+                        j ++
+                    }
+                }
+
+                
 
                 function generatePie(d, d_details){
-                    Candidates = []
+                    Candidates_Won = []
                     Parties = []
+                    TotalSeats = []
+                    Candidates = []
+                    PartiesContest = []
 
-                    getCandidates(d)
+                    getWon(d)
                     getParty(d)
                     getTotalSeats(d_details)
+                    getCandidates(d)
+                    getPartiesContest(d)
 
-                    Candidates = Candidates.concat(TotalSeats)
-                    console.log(Candidates)
+                    Candidates_Won = Candidates_Won.concat(TotalSeats)
+                    
                     Vacant_NMP = ['Vacant', 'NMP']
                     Parties = Parties.concat(Vacant_NMP)
-                    console.log(Parties)
+
+                    console.log(Candidates)
+                    console.log(PartiesContest)
 
                 }
                 generatePie(data_GE_06, data_GE_06_details)
@@ -494,14 +519,14 @@ setPosition_xRow(6, row4_x, (width/4)+250)
 
                 
                 // bootstrap pie chart
-                var barColors = ["red", "green", "blue", "orange", "yellow", "purple", "teal", "magenta"];
-                var pieChart = new Chart("myChart", {
+                var barColors = ["red", "green", "blue", "orange", "yellow", "purple", "teal", "magenta", "cyan", "brown"];
+                var pieChart = new Chart("pieChart", {
                 type: "pie",
                 data: {
                     labels: Parties,
                     datasets: [{
                     backgroundColor: barColors,
-                    data: Candidates
+                    data: Candidates_Won
                     }]
                 },
                 options: {
@@ -512,12 +537,38 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 }
                 });
 
+                
+                // end of bootstrap pie chart
+                // ==========================
+
+                // bootstrap bar chart
+                var barChart = new Chart("barChart", {
+                type: "bar",
+                data: {
+                    labels: PartiesContest,
+                    datasets: [{
+                    backgroundColor: barColors,
+                    data: Candidates
+                    }]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: "Party Candidates_Won Contested for each GE"
+                    }
+                }
+                });
+          
+
                 function updateChart(){
-                    pieChart.data.datasets[0].data = Candidates
+                    pieChart.data.datasets[0].data = Candidates_Won
                     pieChart.data.labels = Parties
                     pieChart.update();
+
+                    barChart.data.datasets[0].data = Candidates
+                    barChart.data.labels = PartiesContest
+                    barChart.update();
                 }
-          
          
     })
 
