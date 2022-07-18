@@ -36,13 +36,15 @@ padding: 10px;
             <div class="container">
             <div class="row">
                 <canvas id="pieChart" style="width:100%;max-width:700px"></canvas>
-           
-            <div id="line-chart-area" class="col-sm">
+            </div>
+            <!-- <div id="line-chart-area" class="col-sm">
                 <svg id="svg_line" width="500" height="400"></svg>
+            </div> -->
+            <div class="row">
+                <canvas id="lineChart" style="width:100%;max-width:700px"></canvas>
             </div>
-
             
-            </div>
+            
             <div class ="row">
                 <canvas id="barChart" style="width:100%;max-width:700px"></canvas>
             </div>
@@ -448,104 +450,125 @@ setPosition_xRow(6, row4_x, (width/4)+250)
                 }
 
                 var dataset1 = [
-                    [1, getPercentage(data_GE_06, data_GE_06_details)], 
-                    [2, getPercentage(data_GE_11, data_GE_11_details)],
-                    [3, getPercentage(data_GE_15, data_GE_15_details)],
-                    [4, getPercentage(data_GE_20, data_GE_20_details)]
+                    getPercentage(data_GE_06, data_GE_06_details), 
+                    getPercentage(data_GE_11, data_GE_11_details),
+                    getPercentage(data_GE_15, data_GE_15_details),
+                    getPercentage(data_GE_20, data_GE_20_details)
                 ];
 
                 var dataset2 = [
-                    [1, getPercentage_opp(data_GE_06, data_GE_06_details)], 
-                    [2, getPercentage_opp(data_GE_11, data_GE_11_details)],
-                    [3, getPercentage_opp(data_GE_15, data_GE_15_details)],
-                    [4, getPercentage_opp(data_GE_20, data_GE_20_details)]
+                    getPercentage_opp(data_GE_06, data_GE_06_details), 
+                    getPercentage_opp(data_GE_11, data_GE_11_details),
+                    getPercentage_opp(data_GE_15, data_GE_15_details),
+                    getPercentage_opp(data_GE_20, data_GE_20_details)
                 ];
 
-                var svg_line = d3.select("#svg_line"),
-                margin = 200
-                new_width = svg_line.attr("width") - margin,
-                new_height = svg_line.attr("height") - margin
-                g_line = svg_line.append("g").attr("transform", "translate(" + new_width / 3 + "," + new_height / 2 + ")");
+                // var svg_line = d3.select("#svg_line"),
+                // margin = 200
+                // new_width = svg_line.attr("width") - margin,
+                // new_height = svg_line.attr("height") - margin
+                // g_line = svg_line.append("g").attr("transform", "translate(" + new_width / 3 + "," + new_height / 2 + ")");
 
 
-                var xScale = d3.scaleLinear().domain([1, 4]).range([0, new_width]),
-                yScale = d3.scaleLinear().domain([0, 100]).range([new_height, 0]);
+                // var xScale = d3.scaleLinear().domain([1, 4]).range([0, new_width]),
+                // yScale = d3.scaleLinear().domain([0, 100]).range([new_height, 0]);
 
-                svg_line.append('text')
-                .attr('x', new_width/2 + 100)
-                .attr('y', 100)
-                .attr('text-anchor', 'middle')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 16)
-                .text('PAP\'s % seats against Opposition');
+                // svg_line.append('text')
+                // .attr('x', new_width/2 + 100)
+                // .attr('y', 100)
+                // .attr('text-anchor', 'middle')
+                // .style('font-family', 'Helvetica')
+                // .style('font-size', 16)
+                // .text('PAP\'s % seats against Opposition');
                 
-                // X label
-                svg_line.append('text')
-                .attr('x', new_width/2 + 100)
-                .attr('y', new_height - 15 + 150)
-                .attr('text-anchor', 'middle')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 12)
+                // // X label
+                // svg_line.append('text')
+                // .attr('x', new_width/2 + 100)
+                // .attr('y', new_height - 15 + 150)
+                // .attr('text-anchor', 'middle')
+                // .style('font-family', 'Helvetica')
+                // .style('font-size', 12)
 
-                // Y label
-                svg_line.append('text')
-                .attr('text-anchor', 'middle')
-                .attr('transform', 'translate(60,' + new_height + ')rotate(-90)')
-                .style('font-family', 'Helvetica')
-                .style('font-size', 12)
-                .text('Percentage of seats occupied');
+                // // Y label
+                // svg_line.append('text')
+                // .attr('text-anchor', 'middle')
+                // .attr('transform', 'translate(60,' + new_height + ')rotate(-90)')
+                // .style('font-family', 'Helvetica')
+                // .style('font-size', 12)
+                // .text('Percentage of seats occupied');
 
-                g_line.append("g")
-                .attr("transform", "translate(0," + new_height + ")")
-                .call(d3.axisBottom(xScale));
+                // g_line.append("g")
+                // .attr("transform", "translate(0," + new_height + ")")
+                // .call(d3.axisBottom(xScale));
                 
-                g_line.append("g")
-                .call(d3.axisLeft(yScale));
+                // g_line.append("g")
+                // .call(d3.axisLeft(yScale));
 
-                svg_line.append('g')
-                .selectAll("dot")
-                .data(dataset1)
-                .enter()
-                .append("circle")
-                .attr("cx", function (d) { return xScale(d[0]); } )
-                .attr("cy", function (d) { return yScale(d[1]); } )
-                .attr("r", 2)
-                .attr("transform", "translate(" + 100 + "," + 100 + ")")
-                .style("fill", "#CC0000");
+                // svg_line.append('g')
+                // .selectAll("dot")
+                // .data(dataset1)
+                // .enter()
+                // .append("circle")
+                // .attr("cx", function (d) { return xScale(d[0]); } )
+                // .attr("cy", function (d) { return yScale(d[1]); } )
+                // .attr("r", 2)
+                // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                // .style("fill", "#CC0000");
 
-                svg_line.append('g')
-                .selectAll("dot")
-                .data(dataset2)
-                .enter()
-                .append("circle")
-                .attr("cx", function (d) { return xScale(d[0]); } )
-                .attr("cy", function (d) { return yScale(d[1]); } )
-                .attr("r", 2)
-                .attr("transform", "translate(" + 100 + "," + 100 + ")")
-                .style("fill", "blue");
+                // svg_line.append('g')
+                // .selectAll("dot")
+                // .data(dataset2)
+                // .enter()
+                // .append("circle")
+                // .attr("cx", function (d) { return xScale(d[0]); } )
+                // .attr("cy", function (d) { return yScale(d[1]); } )
+                // .attr("r", 2)
+                // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                // .style("fill", "blue");
 
-                var line = d3.line()
-                .x(function(d) { return xScale(d[0]); }) 
-                .y(function(d) { return yScale(d[1]); }) 
-                .curve(d3.curveMonotoneX)
+                // var line = d3.line()
+                // .x(function(d) { return xScale(d[0]); }) 
+                // .y(function(d) { return yScale(d[1]); }) 
+                // .curve(d3.curveMonotoneX)
                 
-                svg_line.append("path")
-                .datum(dataset1) 
-                .attr("class", "line") 
-                .attr("transform", "translate(" + 100 + "," + 100 + ")")
-                .attr("d", line)
-                .style("fill", "none")
-                .style("stroke", "#CC0000")
-                .style("stroke-width", "2");
+                // svg_line.append("path")
+                // .datum(dataset1) 
+                // .attr("class", "line") 
+                // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                // .attr("d", line)
+                // .style("fill", "none")
+                // .style("stroke", "#CC0000")
+                // .style("stroke-width", "2");
 
-                svg_line.append("path")
-                .datum(dataset2) 
-                .attr("class", "line") 
-                .attr("transform", "translate(" + 100 + "," + 100 + ")")
-                .attr("d", line)
-                .style("fill", "none")
-                .style("stroke", "blue")
-                .style("stroke-width", "2");
+                // svg_line.append("path")
+                // .datum(dataset2) 
+                // .attr("class", "line") 
+                // .attr("transform", "translate(" + 100 + "," + 100 + ")")
+                // .attr("d", line)
+                // .style("fill", "none")
+                // .style("stroke", "blue")
+                // .style("stroke-width", "2");
+                var xLabel = ['11th Parliament', '12th Parliament', '13th Parliament', '14th Parliament']
+                new Chart("lineChart", {
+                type: "line",
+                data: {
+                    labels: xLabel,
+                    datasets: [{
+                    label: 'PAP', 
+                    data: dataset1,
+                    borderColor: "red",
+                    fill: false
+                    }, {
+                    label: 'Opposition Parties',
+                    data: dataset2,
+                    borderColor: "blue",
+                    fill: false
+                    }]
+                },
+                options: {
+                    legend: {display: true}
+                }
+                });
 
                 
                 // bootstrap pie chart
