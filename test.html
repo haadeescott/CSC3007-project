@@ -6,20 +6,24 @@ var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 var yValues = [55, 49, 44, 24, 15];
 var barColors = ["red", "green","blue","orange","brown"];
 
+function getX(d, i){
+  return d[i]
+}
 new Chart("myChart", {
   type: "bar",
   data: {
     labels: xValues,
     datasets: [{
+      legend: {display:false},
       backgroundColor: barColors,
       data: yValues
     }]
   },
   options: {
     title: {
-      display: true,
       text: "World Wide Wine Production"
-    }
+    },
+    legend: {display:false}
   }
 });
 </script>
