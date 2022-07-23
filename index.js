@@ -6,7 +6,7 @@ Promise.all([
   d3.json("GE.json"),
   d3.json("GE_details.json"),
 ]).then((data) => {
-  let width = 2600,
+  let width = 1920,
     height = 500;
 
   // x axis for each row on chamber
@@ -31,12 +31,21 @@ Promise.all([
   // 4TH ROW (6 COLUMNS)
   setPosition_xRow(6, row4_x, width / 4 + 250);
 
-  // var svg = d3.select("body")
-  //     .append("svg")
-  //     .attr("width", width)
-  //     .attr("height", height)
-  //     .attr("viewBox", "0 0 " + width + " " + height)
-  //     .style('background-color', 'lightgrey');
+  var svg = d3
+    .select("#seatChart")
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", `0 0 ${width} ${height}`);
+  // .style("background-color", "lightgrey");
+
+  var aspect = width / height,
+    chart = d3.select("#seatChart");
+  d3.select(window).on("resize", function () {
+    var targetWidth = chart.node().getBoundingClientRect().width;
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+  });
 
   let width_seat = 39,
     height_seat = 32;
@@ -73,7 +82,7 @@ Promise.all([
   var data_GE_15_details = data_GE_details.GE_2015;
   var data_GE_20_details = data_GE_details.GE_2020;
 
-  // updateParliament(data_11)
+  updateParliament(data_11);
 
   function updateParliament(d) {
     let row1 = d.chamber_right.row_1;
@@ -289,17 +298,36 @@ Promise.all([
     d3.select("#button-area")
       .append("text")
       .attr("class", className)
+      .attr("id", `btn${year}`)
       .text(`${year}th Parliament`)
       .on("click", (event, d) => {
         $(".button-year").removeClass("focus");
         $(event.target).addClass("focus");
-        // d3.select("#title")
-        //     .text("")
-        // updateParliament(data[0])
-        // generateCharts(data[1], data[2])
-        // updateChart(index);
+        $("#txtCenter").text(`${year}th Parliament`);
+        updateParliament(data[0]);
+        generateCharts(data[1], data[2]);
+        updateChart(index);
       });
   });
+
+  // Timer for buttons
+  var intervalID = window.setInterval(myCallback, 3000);
+  index = 0;
+  function myCallback() {
+    var currParl = parliamentPeriod[index];
+    var year = currParl["year"];
+    var data = currParl["data"];
+    $(".button-year").removeClass("focus");
+    $(`#btn${year}`).addClass("focus");
+    $("#txtCenter").text(`${year}th Parliament`);
+    updateParliament(data[0]);
+    generateCharts(data[1], data[2]);
+    updateChart(index);
+    if (index == 3) {
+      clearInterval(intervalID);
+    }
+    index++;
+  }
 
   // Charts
   // ==============================================
@@ -423,26 +451,66 @@ Promise.all([
       ],
     },
     options: {
-      legend: { display: true },
+      legend: {
+        display: true,
+        labels: {
+          fontFamily: "Montserrat",
+          fontColor: "white",
+        },
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              fontFamily: "Montserrat",
+              fontColor: "white",
+            },
+          },
+        ],
+        xAxes: [
+          {
+            ticks: {
+              fontFamily: "Montserrat",
+              fontColor: "white",
+            },
+          },
+        ],
+      },
     },
   });
   // end of line chart
 
   // pie chart
   var barColors = [
-    "red",
-    "green",
-    "blue",
-    "orange",
-    "yellow",
-    "purple",
-    "teal",
-    "magenta",
-    "cyan",
-    "brown",
-    "pink",
-    "beige",
+    "rgba(255, 99, 132, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(255, 206, 86, 0.2)",
+    "rgba(75, 192, 192, 0.2)",
+    "rgba(153, 102, 255, 0.2)",
+    "rgba(255, 159, 64, 0.2)",
+    "rgba(255, 0, 255, 0.2)",
+    "rgba(129, 193, 108, 0.2)",
+    "rgba(186, 155, 123, 0.2)",
+    "rgba(112, 84, 39, 0.2)",
+    "rgba(204, 214, 93, 0.2)",
+    "rgba(18, 77, 29, 0.2)",
   ];
+
+  var barBorderColors = [
+    "rgba(255, 99, 132, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(255, 206, 86, 1)",
+    "rgba(75, 192, 192, 1)",
+    "rgba(153, 102, 255, 1)",
+    "rgba(255, 159, 64, 1)",
+    "rgba(255, 0, 255, 1)",
+    "rgba(129, 193, 108, 1)",
+    "rgba(186, 155, 123, 1)",
+    "rgba(112, 84, 39, 1)",
+    "rgba(204, 214, 93, 1)",
+    "rgba(18, 77, 29, 1)",
+  ];
+
   var pieChart = new Chart("pieChart", {
     type: "pie",
     data: {
@@ -450,6 +518,8 @@ Promise.all([
       datasets: [
         {
           backgroundColor: barColors,
+          borderColor: barBorderColors,
+          borderWidth: 1,
           data: Candidates_Won,
         },
       ],
@@ -458,11 +528,48 @@ Promise.all([
       title: {
         display: true,
         text: "Parties in the Parliament",
+        fontFamily: "Montserrat",
+        fontColor: "white",
+      },
+      legend: {
+        labels: {
+          fontFamily: "Montserrat",
+          fontColor: "white",
+        },
       },
     },
   });
   // end of pie chart
 
+  var barChartOptions = {
+    title: {
+      display: true,
+      text: "Total number of candidates contested for each General Election (GE)",
+      fontFamily: "Montserrat",
+      fontColor: "white",
+    },
+    legend: {
+      labels: PartiesContest,
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            fontFamily: "Montserrat",
+            fontColor: "white",
+          },
+        },
+      ],
+      xAxes: [
+        {
+          ticks: {
+            fontFamily: "Montserrat",
+            fontColor: "white",
+          },
+        },
+      ],
+    },
+  };
   // bar chart
   var barChart = new Chart("barChart", {
     type: "bar",
@@ -471,19 +578,13 @@ Promise.all([
       datasets: [
         {
           backgroundColor: barColors,
+          borderColor: barBorderColors,
+          borderWidth: 1,
           data: Candidates,
         },
       ],
     },
-    options: {
-      title: {
-        display: true,
-        text: "Total number of candidates contested for each General Election (GE)",
-      },
-      legend: {
-        labels: PartiesContest,
-      },
-    },
+    options: barChartOptions,
   });
   // end of bar chart
 
@@ -494,7 +595,6 @@ Promise.all([
 
     barChart.data.datasets[0].data = Candidates;
     barChart.data.labels = PartiesContest;
-    console.log("update here");
     barChart.update();
     $("#textSeatsGrowth").text("hello");
     document.getElementById("textSeatsGrowth").textContent =

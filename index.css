@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(41, 60, 71, 255) !important;
+}
+
 #center-title {
     height: 200px;
     width: 400px;
@@ -7,7 +11,7 @@
     top: 50%;
     left: 50%;
     margin-top: -100px;
-    margin-left: -200px;    
+    margin-left: -200px;
 }
 
 #button-area {
@@ -19,15 +23,37 @@
 }
 
 .button-year {
-    padding-right: 10px;
-}
-
-.button-year:hover {
+    padding-right: 20px;
+    display: inline-block;
     cursor: pointer;
+    font-family: "Montserrat";
+    color: white
 }
 
-.focus {
-    text-decoration: underline;
-    color: blue;
-    font-weight: bold;
+.button-year:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.focus:after {
+    width: 100%;
+    background: blue;
+}
+
+#seatChart {
+    overflow: auto;
+}
+
+#textSeatsGrowth {
+    font-family: "Montserrat";
+    color: white
+}
+
+#txtCenter {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: white;
 }
