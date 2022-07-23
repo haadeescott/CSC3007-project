@@ -546,7 +546,7 @@ Promise.all([
       display: true,
       text: "Total number of candidates contested for each General Election (GE)",
       fontFamily: "Montserrat",
-      fontColor: "white",
+      fontColor: "rgb(255, 255, 255, 0.7)",
     },
     legend: {
       labels: PartiesContest,

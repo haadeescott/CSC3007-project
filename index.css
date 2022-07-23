@@ -41,7 +41,7 @@ body {
 
 .focus:after {
     width: 100%;
-    background: blue;
+    background: rgb(255, 255, 255, 0.5);
 }
 
 #seatChart {
