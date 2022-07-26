@@ -6,7 +6,7 @@ Promise.all([
   d3.json("GE.json"),
   d3.json("GE_details.json"),
 ]).then((data) => {
-  let width = 1920,
+  let width = 1020,
     height = 500;
 
   // x axis for each row on chamber
@@ -23,13 +23,13 @@ Promise.all([
 
   // LAYOUT OF SINGAPORE PARLIAMENT => Total 112 seats available
   // 1ST ROW (18 COLUMNS) each seat is +50 apart
-  setPosition_xRow(18, row1_x, width / 4 + 400);
+  setPosition_xRow(18, row1_x, width / 10 + 20);
   // 2ND ROW (16 COLUMNS)
-  setPosition_xRow(16, row2_x, width / 4 + 450);
+  setPosition_xRow(16, row2_x, width / 10 + 70);
   // 3RD ROW (16 COLUMNS)
-  setPosition_xRow(16, row3_x, width / 4 + 450);
+  setPosition_xRow(16, row3_x, width / 10 + 70);
   // 4TH ROW (6 COLUMNS)
-  setPosition_xRow(6, row4_x, width / 4 + 650);
+  setPosition_xRow(6, row4_x, width / 10 + 270);
 
   var svg = d3
     .select("#seatChart")
@@ -593,9 +593,13 @@ Promise.all([
 
     var papPercent = `Percentage of PAP: ${Math.floor(dataset1[i])}%`;
     var oppPercent = `Percentage of Opposition: ${Math.floor(dataset2[i])}%`;
+
+    var ParliamentInfoText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'
+
     $("#textNumCandidates").text("put text here");
     $("#textPapSeatsGrowth").text(papPercent);
     $("#textOppSeatsGrowth").text(oppPercent);
+    $("#textParliamentInfo").text(ParliamentInfoText)
   }
 
   // upon 1st page load
