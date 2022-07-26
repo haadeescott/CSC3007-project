@@ -23,13 +23,13 @@ Promise.all([
 
   // LAYOUT OF SINGAPORE PARLIAMENT => Total 112 seats available
   // 1ST ROW (18 COLUMNS) each seat is +50 apart
-  setPosition_xRow(18, row1_x, width / 4);
+  setPosition_xRow(18, row1_x, width / 4 + 400);
   // 2ND ROW (16 COLUMNS)
-  setPosition_xRow(16, row2_x, width / 4 + 50);
+  setPosition_xRow(16, row2_x, width / 4 + 450);
   // 3RD ROW (16 COLUMNS)
-  setPosition_xRow(16, row3_x, width / 4 + 50);
+  setPosition_xRow(16, row3_x, width / 4 + 450);
   // 4TH ROW (6 COLUMNS)
-  setPosition_xRow(6, row4_x, width / 4 + 250);
+  setPosition_xRow(6, row4_x, width / 4 + 650);
 
   var svg = d3
     .select("#seatChart")
@@ -106,7 +106,7 @@ Promise.all([
       .attr("x", function (d, i) {
         return row1_x[i];
       })
-      .attr("y", 130)
+      .attr("y", 190)
       .attr("fill", "white")
       .attr("stroke", "black")
       .attr("id", function (d, i) {
@@ -123,7 +123,7 @@ Promise.all([
       .attr("x", function (d, i) {
         return row2_x[i];
       })
-      .attr("y", 90)
+      .attr("y", 150)
       .attr("fill", "white")
       .attr("stroke", "black")
       .attr("id", function (d, i) {
@@ -140,7 +140,7 @@ Promise.all([
       .attr("x", function (d, i) {
         return row3_x[i];
       })
-      .attr("y", 50)
+      .attr("y", 110)
       .attr("fill", "white")
       .attr("stroke", "black")
       .attr("id", function (d, i) {
@@ -157,7 +157,7 @@ Promise.all([
       .attr("x", function (d, i) {
         return row4_x[i];
       })
-      .attr("y", 10)
+      .attr("y", 70)
       .attr("fill", "white")
       .attr("stroke", "black")
       .attr("id", function (d, i) {
