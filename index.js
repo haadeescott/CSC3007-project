@@ -261,15 +261,11 @@ Promise.all([
           .duration(30)
           .attr("stroke", "white")
           .attr("stroke-width", 4);
-
-        d3.select(".tooltip")
+        d3.select(".tooltip2")
           .text("Party: " + d.party + ", " + "Name: " + d.name)
-          .style("background", "#fff")
           .style("left", event.pageX + "px")
           .style("top", event.pageY + "px")
-          .style("font-weight", "bold")
-          .style("font-size", "24px")
-          .style("opacity", 1);
+          .style("opacity", 0.9);
       })
       .on("mouseout", (event, d) => {
         d3.select(event.currentTarget)
@@ -278,7 +274,7 @@ Promise.all([
           .attr("stroke", "black")
           .attr("stroke-width", 1)
           .style("opacity", 1);
-        d3.select(".tooltip").style("opacity", 0);
+        d3.select(".tooltip2").style("opacity", 0);
       });
   } // end of updateParliament
 
