@@ -48,7 +48,7 @@ body {
     overflow: auto;
 }
 
-#textSeatsGrowth {
+.sideTexts {
     font-family: "Montserrat";
     color: white
 }

@@ -423,8 +423,6 @@ Promise.all([
     getPercentage_opp(data_GE_20, data_GE_20_details),
   ];
 
-  console.log(dataset1);
-
   var xLabel = [
     "11th Parliament",
     "12th Parliament",
@@ -596,13 +594,12 @@ Promise.all([
     barChart.data.datasets[0].data = Candidates;
     barChart.data.labels = PartiesContest;
     barChart.update();
-    $("#textSeatsGrowth").text("hello");
-    document.getElementById("textSeatsGrowth").textContent =
-      "Percentage of PAP: " +
-      Math.floor(dataset1[i]) +
-      "%. Percentage of Opposition: " +
-      Math.floor(dataset2[i]) +
-      "%.";
+
+    var papPercent = `Percentage of PAP: ${Math.floor(dataset1[i])}%`;
+    var oppPercent = `Percentage of Opposition: ${Math.floor(dataset2[i])}%`;
+    $("#textNumCandidates").text("put text here");
+    $("#textPapSeatsGrowth").text(papPercent);
+    $("#textOppSeatsGrowth").text(oppPercent);
   }
 
   // upon 1st page load
