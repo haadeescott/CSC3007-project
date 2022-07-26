@@ -322,6 +322,7 @@ Promise.all([
     if (index == 3) {
       clearInterval(intervalID);
     }
+    
     index++;
   }
 
@@ -582,6 +583,100 @@ Promise.all([
   });
   // end of bar chart
 
+  // GE and Parliament Info Dump
+  var ParlText_11th = 'The 11th Parliament of Singapore had its first session commenced on 2 November 2006 and was prorogued on 13 April 2009.\n \
+  The second session commence from 18 May 2009 and was dissolved on 19 April 2011.\n \
+  The membership was set by the 2006 Singapore General Election on 7 May 2006, and it has changed twice due to the deaths of Jurong GRC MP Dr Ong Chit Chung in 2008,\n \
+  and Ang Mo Kio GRC MP Balaji Sadasivan who was also the Senior Minister of State for Foreign Affairs.'
+
+  var ParlText_12th = 'The 12th Parliament of Singapore commenced on 10 October 2011 and was prorogued on 25 August 2015.\n \
+  The membership was set by the 2011 Singapore General Election on 7 May 2011 and changed three times due to\n \
+  expulsion of Hougang Single Member Constituency MP in 2012 and resignation of Punggol East Single Member Constituency MP and\n \
+  Speaker of Parliament over extra-marital affairs in 2013, as well as the death of Lee Kuan Yew, former Prime Minister of Singapore and MP of Tanjong Pagar Group Representation Constituency.'
+
+  var ParlText_13th = 'The 13th Parliament of Singapore first commenced on 15 January 2016 and was dissolved on 23 June 2020.\n \
+  The membership was set by the 2015 Singapore General Election on 11 September 2015, and changed twice throughout the term;\n \
+  one was the resignation of Bukit Batok Single Member Constituency MP David Ong in 2016, and the resignation of Marsiling–Yew Tee Group Representation Constituency MP and Speaker Halimah Yacob in 2017.'
+
+  var ParlText_14th = 'The 14th Parliament of Singapore is the current Parliament of Singapore. It opened on 24 August 2020. The membership was set by the 2020 Singapore General Election on 10 July 2020.\n \
+  The 14th Parliament is controlled by the People\'s Action Party majority, led by Prime Minister Lee Hsien Loong and members of the cabinet, which assumed power on 25 July 2020.\n \
+  The Opposition is led by Pritam Singh from the Workers\' Party. Tan Chuan-Jin will be the Speaker of Parliament from the People\'s Action Party.'
+  
+  var GE_2006_Info = 'Besides the ruling PAP, the other major political parties were the Workers\' Party of Singapore (WP) led by Low Thia Khiang,\n \
+  the Singapore Democratic Party (SDP) led by Chee Soon Juan, who himself was ineligible to run in this election because of a 2002 conviction\n \
+  Four parties, including the SPP and the NSP, contested the election as members of the Singapore Democratic Alliance (SDA).'
+
+  var GE_2011_Info = 'The governing (PAP), currently led by the Prime Minister Lee Hsien Loong. The other major political parties are the Workers\' Party of Singapore (WP) led by Low Thia Khiang,\n \
+  the Singapore People\'s Party (SPP) led by Chiam See Tong which left the Singapore Democratic Alliance (SDA) in 2011,\n \
+  the Singapore Democratic Party (SDP) led by Chee Soon Juan, the National Solidarity Party (NSP) led by Goh Meng Seng which left the SDA in 2007,\n \
+  the Reform Party (RP) led by Kenneth Jeyaretnam, and the Singapore Democratic Alliance (SDA) led by Desmond Lim.'
+
+  var GE_2015_Info = 'The leading Opposition party is The Worker\'s Party, led by Low Thia Khiang, with 7 elected seats and 2 NCMP seats.\n \
+  The Singapore People\'s Party led by Chiam See Tong has 1 NCMP seat. A total of eight Opposition parties challenged the ruling party in this election. \n \
+  The Singaporean\'s First (SF SingFirst) led by Tan Jee Say, and the People\'s Power Party (PPP) led by Goh Meng Seng are the 2 new parties that have contested for the 2015 GE.'
+  
+  var GE_2020_Info = 'A total of ten opposition parties challenged the ruling party in this election. The Progress Singapore Party (PSP) led by Tan Cheng Bock. The Peoples Voice (PV) led by Tean.\n \
+  The Red Dot United (RDU) led by Ravi Philemon, and an Independent Candidate, are the 3 new parties that have emerged as contestants for the 2020 General Election.'
+  
+  var seats_11th = 'Total Valid Votes: 1,123,273. PAP Votes: 748,130. Opposition Votes: 624,858.'
+
+  var seats_12th = 'Total Valid Votes: 2,015,636. PAP Votes: 1,212,154. Opposition Votes: 803,482.'
+
+  var seats_13th = 'Total Valid Votes: 2,260,379. PAP Votes: 1,579,183. Opposition Votes: 681,196.'
+
+  var seats_14th = 'Total Valid Votes: 2,494,537. PAP Votes: 1,527,491. Opposition Votes: 967,046.'
+  //
+  function getParlInfo(i){
+    textInfo = ''
+    if(i==0){
+      textInfo = ParlText_11th
+    }
+    else if(i==1){
+      textInfo = ParlText_12th
+    }
+    else if(i==2){
+      textInfo = ParlText_13th
+    }
+    else{
+      textInfo = ParlText_14th
+    }
+    return textInfo
+  }
+
+  function getGEInfo(i){
+    textInfo = ''
+    if(i==0){
+      textInfo = GE_2006_Info
+    }
+    else if(i==1){
+      textInfo = GE_2011_Info
+    }
+    else if(i==2){
+      textInfo = GE_2015_Info
+    }
+    else{
+      textInfo = GE_2020_Info
+    }
+    return textInfo
+  }
+
+  function getSeatsInfo(i){
+    textInfo = ''
+    if(i==0){
+      textInfo = seats_11th
+    }
+    else if(i==1){
+      textInfo = seats_12th
+    }
+    else if(i==2){
+      textInfo = seats_13th
+    }
+    else{
+      textInfo = seats_14th
+    }
+    return textInfo
+  }
+
   function updateChart(i) {
     pieChart.data.datasets[0].data = Candidates_Won;
     pieChart.data.labels = Parties;
@@ -591,15 +686,14 @@ Promise.all([
     barChart.data.labels = PartiesContest;
     barChart.update();
 
-    var papPercent = `Percentage of PAP: ${Math.floor(dataset1[i])}%`;
-    var oppPercent = `Percentage of Opposition: ${Math.floor(dataset2[i])}%`;
-
-    var ParliamentInfoText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'
-
-    $("#textNumCandidates").text("put text here");
+    var papPercent = `Percentage of PAP elected in Parliament: ${Math.floor(dataset1[i])}%`;
+    var oppPercent = `Percentage of Opposition elected in Parliament: ${Math.floor(dataset2[i])}%`;
+    
     $("#textPapSeatsGrowth").text(papPercent);
     $("#textOppSeatsGrowth").text(oppPercent);
-    $("#textParliamentInfo").text(ParliamentInfoText)
+    $("#textSeatsInfo").text(getSeatsInfo(i));
+    $("#textNumCandidates").text(getGEInfo(i));
+    $("#textParliamentInfo").text(getParlInfo(i));
   }
 
   // upon 1st page load
