@@ -320,9 +320,14 @@ Promise.all([
       .attr("id", `btn${year}`)
       .text(`${year}th Parliament`)
       .on("click", (event, d) => {
+        $("#textPapSeatsGrowth").removeClass("sideTexts")
+        $("#textOppSeatsGrowth").removeClass("sideTexts")
+        $("#textSeatsInfo").removeClass("sideTexts")
+        $("#textNumCandidates").removeClass("sideTexts")
+        $("#textParliamentInfo").removeClass("sideTexts")
         $(".button-year").removeClass("focus");
         $(event.target).addClass("focus");
-        $("#txtCenter").text(`${year}th Parliament`);
+        $("#txtCenter").text(`${year}th Parliament`)
         updateParliament(data[0]);
         generateCharts(data[1], data[2]);
         updateChart(index);
@@ -333,6 +338,12 @@ Promise.all([
   var intervalID = window.setInterval(myCallback, 3000);
   index = 0;
   function myCallback() {
+    $("#textPapSeatsGrowth").removeClass("sideTexts")
+    $("#textOppSeatsGrowth").removeClass("sideTexts")
+    $("#textSeatsInfo").removeClass("sideTexts")
+    $("#textNumCandidates").removeClass("sideTexts")
+    $("#textParliamentInfo").removeClass("sideTexts")
+    document.getElementById('textSeatsInfo').classList.remove('p.sideTexts');
     var currParl = parliamentPeriod[index];
     var year = currParl["year"];
     var data = currParl["data"];
@@ -345,8 +356,8 @@ Promise.all([
     if (index == 3) {
       clearInterval(intervalID);
     }
-
     index++;
+    
   }
 
   // Charts
@@ -463,7 +474,7 @@ Promise.all([
         {
           label: "Opposition Parties",
           data: dataset2,
-          borderColor: "rgba(0, 0, 255, 0.5)",
+          borderColor: "blue",
           fill: false,
         },
       ],
@@ -475,6 +486,13 @@ Promise.all([
           fontFamily: "Montserrat",
           fontColor: "white",
         },
+      },
+      title: {
+        display: true,
+        text: "Percentage of Parties elected in the Parliament",
+        fontFamily: "Montserrat",
+        fontColor: "white",
+        fontSize: 18,
       },
       scales: {
         yAxes: [
@@ -548,6 +566,7 @@ Promise.all([
         text: "Parties in the Parliament",
         fontFamily: "Montserrat",
         fontColor: "white",
+        fontSize: 18,
       },
       legend: {
         labels: {
@@ -564,7 +583,8 @@ Promise.all([
       display: true,
       text: "Total number of candidates contested for each General Election (GE)",
       fontFamily: "Montserrat",
-      fontColor: "rgb(255, 255, 255, 0.7)",
+      fontColor: "white",
+      fontSize: 18,
     },
     legend: {
       labels: PartiesContest,
@@ -641,7 +661,7 @@ Promise.all([
   Four parties, including the SPP and the NSP, contested the election as members of the Singapore Democratic Alliance (SDA).";
 
   var GE_2011_Info =
-    "The governing (PAP), currently led by the Prime Minister Lee Hsien Loong. The other major political parties are the Workers' Party of Singapore (WP) led by Low Thia Khiang,\n \
+    "Other political parties aside from PAP and WP are\n \
   the Singapore People's Party (SPP) led by Chiam See Tong which left the Singapore Democratic Alliance (SDA) in 2011,\n \
   the Singapore Democratic Party (SDP) led by Chee Soon Juan, the National Solidarity Party (NSP) led by Goh Meng Seng which left the SDA in 2007,\n \
   the Reform Party (RP) led by Kenneth Jeyaretnam, and the Singapore Democratic Alliance (SDA) led by Desmond Lim.";
@@ -730,6 +750,13 @@ Promise.all([
     $("#textSeatsInfo").text(getSeatsInfo(i));
     $("#textNumCandidates").text(getGEInfo(i));
     $("#textParliamentInfo").text(getParlInfo(i));
+
+    $("#textPapSeatsGrowth").addClass("sideTexts")
+    $("#textOppSeatsGrowth").addClass("sideTexts")
+    $("#textSeatsInfo").addClass("sideTexts")
+    $("#textNumCandidates").addClass("sideTexts")
+    $("#textParliamentInfo").addClass("sideTexts")
+
   }
 
   // upon 1st page load
