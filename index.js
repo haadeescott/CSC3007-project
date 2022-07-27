@@ -731,6 +731,20 @@ Promise.all([
     return textInfo;
   }
 
+  function getDateParl(i) {
+    textInfo = "";
+    if (i == 0) {
+      textInfo = "(2006 - 2011)";
+    } else if (i == 1) {
+      textInfo = "(2011 - 2015)";
+    } else if (i == 2) {
+      textInfo = "(2015 - 2020)";
+    } else {
+      textInfo = "(2020 - 2024)";
+    }
+    return textInfo;
+  }
+
   function updateChart(i) {
     pieChart.data.datasets[0].data = Candidates_Won;
     pieChart.data.labels = Parties;
@@ -752,6 +766,7 @@ Promise.all([
     $("#textSeatsInfo").text(getSeatsInfo(i));
     $("#textNumCandidates").text(getGEInfo(i));
     $("#textParliamentInfo").text(getParlInfo(i));
+    $("#txtSubCenter").text(getDateParl(i));
 
     // add animation back
     $("#textPapSeatsGrowth").addClass("sideTexts")

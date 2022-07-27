@@ -46,6 +46,12 @@ body {
     color: white;
 }
 
+#txtSubCenter {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: white;
+    font-size: 12;
+}
+
 .tooltip2 {
     position: fixed;
     white-space: nowrap;
@@ -104,3 +110,4 @@ footer small {
     font-size: 14px;
 
 }
+
