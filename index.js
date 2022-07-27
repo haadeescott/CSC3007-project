@@ -15,6 +15,7 @@ Promise.all([
   var row3_x = [];
   var row4_x = [];
 
+
   function setPosition_xRow(columns, row, input) {
     for (i = 0; i < columns; i++) {
       row[i] = input + 50 * i;
@@ -338,12 +339,13 @@ Promise.all([
   var intervalID = window.setInterval(myCallback, 3000);
   index = 0;
   function myCallback() {
+    // remove animation
     $("#textPapSeatsGrowth").removeClass("sideTexts")
     $("#textOppSeatsGrowth").removeClass("sideTexts")
     $("#textSeatsInfo").removeClass("sideTexts")
     $("#textNumCandidates").removeClass("sideTexts")
     $("#textParliamentInfo").removeClass("sideTexts")
-    document.getElementById('textSeatsInfo').classList.remove('p.sideTexts');
+
     var currParl = parliamentPeriod[index];
     var year = currParl["year"];
     var data = currParl["data"];
@@ -751,6 +753,7 @@ Promise.all([
     $("#textNumCandidates").text(getGEInfo(i));
     $("#textParliamentInfo").text(getParlInfo(i));
 
+    // add animation back
     $("#textPapSeatsGrowth").addClass("sideTexts")
     $("#textOppSeatsGrowth").addClass("sideTexts")
     $("#textSeatsInfo").addClass("sideTexts")
